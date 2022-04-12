@@ -1,4 +1,4 @@
-/**********RESET CSS****************/
+/* You can add global styles to this file, and also import other style files */
 html{
     box-sizing: border-box;
     scroll-behavior: smooth;
@@ -71,15 +71,15 @@ img{
     padding:3px;
     border: 7px solid rgb(255,71,111);
     margin-left: 3rem;
-    transition: transform 0.3s ease;
-    transform: translate(-120%, 0);
+  /*   transition: transform 0.3s ease;
+    transform: translate(-120%, 0); */
     
 }
-.aparecerImg{
+/* .aparecerImg{
     transition: transform 0.4s ease;
     transform: translate(0, 0);
 }
-
+ */
 .txtPresentacion{
     align-self: center;
     color: rgb(255,244,247);
@@ -258,6 +258,7 @@ gap: 2rem;
 #renvyle{
     background: rgb(82, 115, 77);
 }
+
 
 /*********************TITULOS SECCIONES*************************/
 
