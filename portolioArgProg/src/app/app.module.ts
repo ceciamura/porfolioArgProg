@@ -10,6 +10,7 @@ import { HabilidadesComponent } from './componentes/habilidades/habilidades.comp
 import { IdiomasComponent } from './componentes/idiomas/idiomas.component';
 import { FooterComponent } from './componentes/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 @NgModule({
   declarations: [
@@ -19,13 +20,15 @@ import { HttpClientModule } from '@angular/common/http';
     ProyectosComponent,
     HabilidadesComponent,
     IdiomasComponent,
-    FooterComponent,
+    FooterComponent
+    
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgCircleProgressModule.forRoot({})
   ],
   providers: [],
   bootstrap: [AppComponent]

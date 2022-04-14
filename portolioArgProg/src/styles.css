@@ -280,8 +280,6 @@ gap: 2rem;
     font-family:'Anek Odia', sans-serif;
     font-size: 1rem;
     list-style: none;
-    
-    
 }
 
 
@@ -294,6 +292,26 @@ gap: 2rem;
     margin: 2rem;
 }
 
+
+.listaExperiencia{
+    display: flex; 
+}
+.tituloExp{
+    display: flex;
+     width: 50%;
+     align-items:  center;
+}
+.tituloExp h3{
+    font-size: 1rem;
+    padding: 1em;
+}
+.info-biodent{
+    font-weight: bold;
+}
+.fa-code, .fa-tooth{
+    font-size: 2rem;
+    color: rgb(255,71,111);
+}
 
 /*******************FOOTER********************************/
 footer{
