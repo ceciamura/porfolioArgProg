@@ -1,59 +1,406 @@
 <section class="info">
-    <section class="experiencia">
-        <h2 class="titulo-secciones">Experiencia laboral</h2>
-        <i class="fa-solid fa-pen"></i>
-        <div class="listaExperiencia">
-            <div class="biodent">
-                <div class="tituloExp">
-                    <i class="fa-solid fa-tooth"></i>
-                  <h3>Consultorio Odontologico</h3> 
-                 </div>
-                 <div class="info-biodent">                       
-                    <span>Odontologa - Full Time</span>
-                    <p>Fecha de inicio: ../../....</p>
-                    <p>Fecha de final: ../../....</p>
-                </div>
+  <section class="col-5">
+    <h2 class="titulo-secciones">Experiencia laboral</h2>
+
+    <button
+      type="button"
+      class="botonEducacion"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal3"
+    >
+      <a *ngIf="ulogged != ''"> <i class="fa-solid fa-plus"></i></a>
+    </button>
+
+    <div class="listaExperiencia">
+      <div class="row d-flex flex-wrap">
+        <div
+          class="card m-1"
+          *ngFor="let item of misDatos"
+          style="width: 18rem"
+        >
+          <div class="card-body">
+            <div class="botones-experiencia d-flex justify-content-end">
+              <button
+                type="button"
+                class="botonEducacion"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal3"
+              >
+                <i
+                  (click)="editarExperiencia(item)"
+                  class="fa-solid fa-pen-to-square text-info"
+                ></i
+                >&nbsp;
+              </button>
+              <button class="botonEducacion">
+                <i
+                  (click)="eliminarExperiencia(item.id)"
+                  class="fa-solid fa-trash-can text-danger"
+                ></i>
+              </button>
+            </div>
+            <h5 class="card-title">{{ item.nombre_experiencia }}</h5>
+
+            <h6 class="card-subtitle mb-2 text-muted">
+              {{ item.tipoTrabajos.nombreTipoTrabajo }}
+            </h6>
+
+            <p class="card-text">{{ item.descripcion }}</p>
+            <p>Fecha de inicio: {{ item.fecha_inicio }}</p>
+            <p>Fecha de finalizado: {{ item.fecha_fin }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--------------------------MODAL EXPERIENCIA------------------------------------------------->
+  <div
+    class="modal fade"
+    id="exampleModal3"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="formExperiencia" (ngSubmit)="guardarExperiencia()">
+            <h5 class="titulo">{{ accion | uppercase }} EXPERIENCIA</h5>
+            <div class="input-group flex-nowrap">
+              <span class="input-group-text" id="addon-wrapping">
+                <i
+                  [class.icono-verde]="
+                    this.formExperiencia.get('nombre_experiencia')?.valid
+                  "
+                  [class.icono-rojo]="
+                    this.formExperiencia.get('nombre_experiencia')?.invalid &&
+                    this.formExperiencia.get('nombre_experiencia')?.touched
+                  "
+                  class="fa-solid fa-book"
+                ></i>
+              </span>
+              <input
+                formControlName="nombre_experiencia"
+                type="text"
+                class="form-control"
+                placeholder="Nombre experiencia"
+                aria-label="nombre"
+                aria-describedby="addon-wrapping"
+              />
+            </div>
+            <div class="input-group flex-nowrap">
+              <span class="input-group-text" id="addon-wrapping">
+                <i
+                  [class.icono-verde]="
+                    this.formExperiencia.get('fecha_inicio')?.valid
+                  "
+                  [class.icono-rojo]="
+                    this.formExperiencia.get('fecha_inicio')?.invalid &&
+                    this.formExperiencia.get('fecha_inicio')?.touched
+                  "
+                  class="fa-solid fa-calendar-days"
+                ></i>
+              </span>
+              <input
+                formControlName="fecha_inicio"
+                maxlength="10"
+                type="text"
+                class="form-control"
+                placeholder="YYYY/MM/DD"
+                aria-label="inicio"
+                aria-describedby="addon-wrapping"
+              />
+            </div>
+            <div class="input-group flex-nowrap">
+              <span class="input-group-text" id="addon-wrapping">
+                <i
+                  [class.icono-verde]="
+                    this.formExperiencia.get('fecha_fin')?.valid
+                  "
+                  [class.icono-rojo]="
+                    this.formExperiencia.get('fecha_fin')?.invalid &&
+                    this.formExperiencia.get('fecha_fin')?.touched
+                  "
+                  class="fa-solid fa-calendar-days"
+                ></i>
+              </span>
+              <input
+                formControlName="fecha_fin"
+                maxlength="10"
+                type="text"
+                class="form-control"
+                placeholder="YYYY/MM/DD"
+                aria-label="inicio"
+                aria-describedby="addon-wrapping"
+              />
+            </div>
+            <div class="input-group flex-nowrap">
+              <span class="input-group-text" id="addon-wrapping">
+                <i
+                  [class.icono-verde]="
+                    this.formExperiencia.get('descripcion')?.valid
+                  "
+                  [class.icono-rojo]="
+                    this.formExperiencia.get('descripcion')?.invalid &&
+                    this.formExperiencia.get('descripcion')?.touched
+                  "
+                  class="fa-solid fa-book"
+                ></i>
+              </span>
+              <input
+                formControlName="descripcion"
+                type="text"
+                class="form-control"
+                placeholder="Descripcion"
+                aria-label="apellido"
+                aria-describedby="addon-wrapping"
+              />
+            </div>
+            <div class="input-group flex-nowrap">
+              <span class="input-group-text" id="addon-wrapping">
+                <i
+                  [class.icono-verde]="
+                    this.formExperiencia.get('tipoExperiencia')?.valid
+                  "
+                  [class.icono-rojo]="
+                    this.formExperiencia.get('tipoExperiencia')?.invalid &&
+                    this.formExperiencia.get('tipoExperiencia')?.touched
+                  "
+                  class="fa-solid fa-book"
+                ></i>
+              </span>
+
+              <select formControlName="listaTrabajos">
+                <option [ngValue]="null">Elige marca</option>
+                <option *ngFor="let tip of tipo" [ngValue]="tip">
+                  {{ tip.nombreTipoTrabajo }}
+                </option>
+              </select>
             </div>
 
-            <div class="biodent">
-                <div class="tituloExp">
-                    <i class="fa-solid fa-tooth"></i>
-                  <h3>Consultorio Odontologico</h3> 
-                 </div>
-                 <div class="info-biodent">                       
-                    <span>Odontologa - Full Time</span>
-                    <p>Fecha de inicio: ../../....</p>
-                    <p>Fecha de final: ../../....</p>
-                </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                [disabled]="this.formExperiencia.invalid"
+                type="submit"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+                (ngSubmit)="guardarExperiencia()"
+              >
+                Submit
+              </button>
             </div>
-            <div class="biodent">
-                <div class="tituloExp">
-                    <i class="fa-solid fa-code"></i>
-                  <h3>Full Stack Developer</h3> 
-                 </div>
-                 <div class="info-biodent">                       
-                    <span>Developer - Freelancer</span>
-                    <p>Fecha de inicio: ../../....</p>
-                    <p>Fecha de final: ../../....</p>
-                </div>
-            </div>
-        
+          </form>
         </div>
-      
-        
+      </div>
+    </div>
+  </div>
+
+  <!-------------------------------EDUCACION---------------------------------------------->
+  <section class="educacion">
+    <h2 class="titulo-secciones">Educacion</h2>
+    <button
+      type="button"
+      class="botonEducacion"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal2"
+    >
+      <a *ngIf="ulogged != ''"> <i class="fa-solid fa-plus"></i></a>
+    </button>
+
+    <div id="tablaEducacion">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Nombre Institucion</th>
+            <th scope="col">Inicio</th>
+            <th scope="col">Finalizacion</th>
+            <th scope="col">Tipo Educacion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let educacion of arrayEducacion">
+            <td>{{ educacion.nombreEducacion }}</td>
+            <td>{{ educacion.fechaInicio }}</td>
+            <td>{{ educacion.fechaFin }}</td>
+            <td>{{ educacion.tipoEducacion }}</td>
+
+            <td *ngIf="ulogged != ''">
+              <button
+                type="button"
+                class="botonEducacion"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal2"
+              >
+                <i
+                  (click)="editarEducacion(educacion)"
+                  class="fa-solid fa-pen-to-square text-info"
+                ></i
+                >&nbsp;
+              </button>
+              <button class="botonEducacion">
+                <i
+                  (click)="eliminarEducacion(educacion.id)"
+                  class="fa-solid fa-trash-can text-danger"
+                ></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-------------------------------------------------------------------------------------------------->
+
+    <section>
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="exampleModal2"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form
+                id="formEdu"
+                [formGroup]="form"
+                (ngSubmit)="guardarEducacion()"
+              >
+                <h5 class="titulo">{{ accion | uppercase }} EDUCACION</h5>
+                <div class="input-group flex-nowrap">
+                  <span class="input-group-text" id="addon-wrapping">
+                    <i
+                      [class.icono-verde]="
+                        this.form.get('nombreEducacion')?.valid
+                      "
+                      [class.icono-rojo]="
+                        this.form.get('nombreEducacion')?.invalid &&
+                        this.form.get('fechaInicio')?.touched
+                      "
+                      class="fa-solid fa-book"
+                    ></i>
+                  </span>
+                  <input
+                    formControlName="nombreEducacion"
+                    type="text"
+                    class="form-control"
+                    placeholder="Nombre Institucion"
+                    aria-label="nombre"
+                    aria-describedby="addon-wrapping"
+                  />
+                </div>
+                <div class="input-group flex-nowrap">
+                  <span class="input-group-text" id="addon-wrapping">
+                    <i
+                      [class.icono-verde]="this.form.get('fechaInicio')?.valid"
+                      [class.icono-rojo]="
+                        this.form.get('fechaInicio')?.invalid &&
+                        this.form.get('fechaInicio')?.touched
+                      "
+                      class="fa-solid fa-calendar-days"
+                    ></i>
+                  </span>
+                  <input
+                    formControlName="fechaInicio"
+                    maxlength="10"
+                    type="text"
+                    class="form-control"
+                    placeholder="YYYY/MM/DD"
+                    aria-label="inicio"
+                    aria-describedby="addon-wrapping"
+                  />
+                </div>
+                <div class="input-group flex-nowrap">
+                  <span class="input-group-text" id="addon-wrapping">
+                    <i
+                      [class.icono-verde]="this.form.get('fechaFin')?.valid"
+                      [class.icono-rojo]="
+                        this.form.get('fechaFin')?.invalid &&
+                        this.form.get('fechaFin')?.touched
+                      "
+                      class="fa-solid fa-calendar-days"
+                    ></i>
+                  </span>
+                  <input
+                    formControlName="fechaFin"
+                    maxlength="10"
+                    type="text"
+                    class="form-control"
+                    placeholder="YYYY/MM/DD"
+                    aria-label="apellido"
+                    aria-describedby="addon-wrapping"
+                  />
+                </div>
+                <div class="input-group flex-nowrap">
+                  <span class="input-group-text" id="addon-wrapping">
+                    <i
+                      [class.icono-verde]="
+                        this.form.get('tipoEducacion')?.valid
+                      "
+                      [class.icono-rojo]="
+                        this.form.get('tipoEducacion')?.invalid &&
+                        this.form.get('tipoEducacion')?.touched
+                      "
+                      class="fa-solid fa-book"
+                    ></i>
+                  </span>
+                  <input
+                    formControlName="tipoEducacion"
+                    type="text"
+                    class="form-control"
+                    placeholder="tipo de estudio"
+                    aria-label="apellido"
+                    aria-describedby="addon-wrapping"
+                  />
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button
+                    [disabled]="this.form.invalid"
+                    type="submit"
+                    class="btn btn-primary"
+                    data-bs-dismiss="modal"
+                    (ngSubmit)="guardarEducacion()"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
-    
-    
-    <section class="educacion">
-        <h2 class="titulo-secciones">Educacion</h2>
-        <i class="fa-solid fa-pen"></i>
-        <ul>
-            <li>Colegio primario y secundario San Francisco de Asis. Titulo Bachiller. Santiago del Estero.</li> <!-- <i class="fa-solid fa-pen"></i><i class="fa-solid fa-trash"></i></li> -->
-            <li>Facultad de Odontologia. Universidad Nacional de Cordoba.</li>
-            <li>Escuela de Postgrado. Cirujano Dentista.</li> 
-            <li>Desarrollo Web- CoderHouse.</li>
-            <li>Javascript - CoderHouse. </li>
-            <li>Full Stack Developer Jr - ArgentinaPrograma.</li>
-        </ul>
-    </section>
-    </section>
+  </section>
+</section>

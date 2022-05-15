@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { PortfolioService } from 'src/app/servicios/portfolio.service';
+import { LoginService } from 'src/app/servicios/login.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { PersonaService } from 'src/app/servicios/persona.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService} from 'ngx-toastr';
+import { RouterModule, Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-header',
@@ -7,15 +13,42 @@ import { PortfolioService } from 'src/app/servicios/portfolio.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
- miPorfolio:any;
-  constructor(private datosPorfolio:PortfolioService) { }
 
-  ngOnInit(): void {
-this.datosPorfolio.obtenerDatos().subscribe(data =>{
-  console.log(data)
-  this.miPorfolio = data;
+ misDatos:any;
+ ulogged:string="";
+ rutaapi="/api/persona";
 
-});
+  constructor(private routes:Router,private loginService:LoginService, private http:HttpClient, private formBuilder:FormBuilder,
+    private toastr:ToastrService
+    ,private personaService:PersonaService) { 
+    
+ http.get(this.rutaapi+"/ver").subscribe(data=>{
+      this.misDatos=data;
+      
+   
+    })
+
   }
 
+
+
+  
+   ngOnInit(): void {
+
+
+this.ulogged= this.loginService.getUserLogged();
+  }
+
+  verPersonas():void{
+    console.log(this.misDatos)
+    //this.routes.navigate(["formularioPersona"]);
+   }
+
+   
+  salir():void{
+    this.loginService.deleteToken();
+    this.ulogged="";
+  }
 }
+
+

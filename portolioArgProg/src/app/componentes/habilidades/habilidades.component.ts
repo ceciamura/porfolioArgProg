@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from 'src/app/servicios/login.service';
 
 @Component({
   selector: 'app-habilidades',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HabilidadesComponent implements OnInit {
 
-  constructor() { }
+  ulogged:string="";
+
+
+  constructor(private loginService:LoginService) { }
 
   ngOnInit(): void {
+    this.ulogged= this.loginService.getUserLogged();
   }
 
 }

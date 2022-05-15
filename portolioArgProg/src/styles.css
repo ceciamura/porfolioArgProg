@@ -55,6 +55,29 @@ img{
     font-family:'Anek Odia', sans-serif;
     text-align: center;
 }
+.iconos>.fa-facebook{
+    color: rgb(14,142,241);
+    font-size: 3rem;    
+}
+
+.iconos>.fa-instagram {
+    font-size: 3rem;
+    color: transparent;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+.iconos>.fa-linkedin{
+    font-size: 3rem;
+    color:rgb(2,117,183)
+}
+
+.iconos>.fa-github{
+    font-size: 3rem;
+    color:#000;
+}
 
 /***************BANNER*****************************/
 .banner{
@@ -70,16 +93,7 @@ img{
     align-self: center;
     padding:3px;
     border: 7px solid rgb(255,71,111);
-    margin-left: 3rem;
-  /*   transition: transform 0.3s ease;
-    transform: translate(-120%, 0); */
-    
-}
-/* .aparecerImg{
-    transition: transform 0.4s ease;
-    transform: translate(0, 0);
-}
- */
+    margin-left: 3rem;}
 .txtPresentacion{
     align-self: center;
     color: rgb(255,244,247);
@@ -224,6 +238,10 @@ gap: 2rem;
     box-sizing: border-box;
     box-shadow: 0 20px 50px rgba(0,0,0,0.8);
     transform: translateY(-100px);
+    
+}
+.tituloProyecto{
+    font-size: 1.3rem;
 }
 
 .container .card:hover .face.face2{
@@ -231,10 +249,11 @@ gap: 2rem;
 }
 
 .container .card .face.face2 .content p {
-    margin: 0;
+    margin: -0.5rem;
     padding: 0;
     text-align: center;
     color: #414141;
+   
 }
 
 .container .card .face.face2 .content h3 {
@@ -252,13 +271,16 @@ gap: 2rem;
 } 
 
 #consultorio {
-    background: rgb(95, 175, 171);
+    background: rgb(13, 14, 13);
 }
 
 #renvyle{
     background: rgb(82, 115, 77);
 }
 
+.listaProyecto{
+    line-height: 0;
+}
 
 /*********************TITULOS SECCIONES*************************/
 
@@ -281,6 +303,7 @@ gap: 2rem;
     font-size: 1rem;
     list-style: none;
 }
+
 
 
 
@@ -322,3 +345,9 @@ footer{
     padding: .5rem;
     margin-top: 2rem;
 }
+
+.hide-boton{
+    opacity: 0;
+}
+
+

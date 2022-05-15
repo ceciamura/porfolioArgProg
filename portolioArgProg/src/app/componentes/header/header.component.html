@@ -5,24 +5,75 @@
             <p class="logoTxt">#YoProgramo</p>
         </div>
         <div class="iconos">
-        <i class="fa-brands fa-facebook"></i>
-        <i class="fa-brands fa-instagram"></i>
-        <i class="fa-brands fa-linkedin-in"></i>
+          <i class="fa-brands fa-facebook"></i>
+          <i class="fa-brands fa-instagram"></i>
+          <i class="fa-brands fa-linkedin"></i>       
+          <i class="fa-brands fa-github"></i>
         </div>
-        <div class="boton">
-        <button id="login" class="editar">Login</button>
+
+
+<!-- Button trigger modal -->
+<div class="botones">
+<div class="boton my-2">
+<button type="button"   id="login" class="editar" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Login
+  </button>
+</div>
+
+<div class="boton">
+  <button type="button"  *ngIf="ulogged!=''"  id="login" class="editar" (click)="salir()">
+      Salir
+    </button>
+  </div>
+</div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Login</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body  justify-content-center">
+          <app-login></app-login>
+        </div>  
+      </div>
     </div>
+  </div>
+
       
     </section>
     
-    <section class="banner">
+    <section *ngFor="let datos of misDatos"  class="banner" >
         <img class="foto" src="./assets/WhatsApp Image 2022-04-09 at 6.15.54 PM.jpeg" alt="foto primer plano">
-        <p class="txtPresentacion">Hola! Soy {{miPorfolio.name}} y trabajo como <span>{{miPorfolio.position}}</span>. Vivo en {{miPorfolio.country}} y cuando no estoy programando disfruto mucho
+        <p *ngIf="ulogged!=''" class="txtPresentacion">Hola! Soy {{datos.nombre}}  {{datos.apellido}} y trabajo como <span>Full Stack developer Jr</span>. Vivo en {{misDatos[0].domicilio}} y cuando no estoy programando disfruto mucho
              de la naturaleza, deporte y los animales. Te invito a ver mi porfolio y mi trabajo.
         </p>
         <div class="iconos">
+       
+       <button  *ngIf="ulogged!=''" (click)="verPersonas()" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         <i class="fa-solid fa-pen"></i>
-        
+      </button>
+      
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Editar Usuario</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <app-formulario-datos-personales></app-formulario-datos-personales>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" >Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
         </div>
     </section>
     </header>

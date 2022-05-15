@@ -11,6 +11,17 @@ import { IdiomasComponent } from './componentes/idiomas/idiomas.component';
 import { FooterComponent } from './componentes/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { LoginComponent } from './componentes/login/login.component';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { CookieService } from 'ngx-cookie-service';
+import { PortfolioComponent } from './componentes/portfolio/portfolio.component';
+import { FormularioDatosPersonalesComponent } from './componentes/formulario-datos-personales/formulario-datos-personales.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
+
 
 @NgModule({
   declarations: [
@@ -20,7 +31,12 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     ProyectosComponent,
     HabilidadesComponent,
     IdiomasComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent,
+    PortfolioComponent,
+    FormularioDatosPersonalesComponent,
+   
+    
     
     
   ],
@@ -28,9 +44,16 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgCircleProgressModule.forRoot({})
+    NgCircleProgressModule.forRoot({}),
+    FormsModule,
+    CommonModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+   
+   
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
