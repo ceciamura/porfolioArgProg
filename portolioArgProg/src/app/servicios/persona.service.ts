@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LoginService } from './login.service';
-import { ExperienciaLaboral } from '../experiencia-laboral';
+import { ExperienciaLaboral } from '../clases/experiencia-laboral';
 import { map } from 'rxjs/operators';
+import { Educacion } from '../clases/educacion';
 
 
 
@@ -43,18 +44,19 @@ guardarExperiencia(persona:any):Observable<any>{
 }
 
 
-  /*----------------------servicio tipo experiencia*--------------------------------------------**/
-
-
-
-/* verTipo():Observable<any>{
-  return this.http.get(this.api + "tipoTrabajo/ver")
-} */
+  /*----------------------servicio tipo experiencia* servicio tipo educacion--------------------------------------------**/
  getTipo(): Observable<ExperienciaLaboral[]> {
   return this.http.get(this.api + "tipoTrabajo/ver").pipe(
     map(tipos => tipos as ExperienciaLaboral[])
   );
 } 
+getTipoEducacion(): Observable<Educacion[]> {
+  return this.http.get(this.api + "tipoEdu/ver").pipe(
+    map(tiposEdu => tiposEdu as Educacion[])
+  );
+} 
+
+
 
 /*----------------------servicio educacion-------------------------------------------------------**/
 verEducacion():Observable<any>{
@@ -75,5 +77,22 @@ actualizarEducacion(id:number, persona:any):Observable<any>{
   return this.http.put(this.api + "educacion/editar/"+id, persona)
 }
 
-
+/**************************PROYECTO SERVICE***************************************************** */
+verProyecto():Observable<any>{
+  return this.http.get(this.api + "proyecto/ver")
 }
+
+eliminarProyecto(id:number):Observable<any>{
+  return this.http.delete(this.api+ "proyecto/delete/"+id)
+}
+
+guardarProyecto(proyecto:any):Observable<any>{
+  return this.http.post(this.api + "proyecto/new", proyecto)
+}
+
+actualizarProyecto(proyecto:any):Observable<any>{
+  return this.http.put(this.api + "proyecto/edit", proyecto)
+} 
+}
+
+

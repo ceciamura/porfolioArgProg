@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
         this.loginError="";
         this.LoginService.setToken(data.id);
         this.routes.navigate(["portfolio"]);
-        //window.location.reload();
+        window.location.reload();
 
 
 

@@ -72,7 +72,7 @@
           ></button>
         </div>
         <div class="modal-body">
-          <form [formGroup]="formExperiencia" (ngSubmit)="guardarExperiencia()">
+         <form [formGroup]="formExperiencia" (ngSubmit)="guardarExperiencia()"> 
             <h5 class="titulo">{{ accion | uppercase }} EXPERIENCIA</h5>
             <div class="input-group flex-nowrap">
               <span class="input-group-text" id="addon-wrapping">
@@ -112,7 +112,7 @@
               <input
                 formControlName="fecha_inicio"
                 maxlength="10"
-                type="text"
+                type="date"
                 class="form-control"
                 placeholder="YYYY/MM/DD"
                 aria-label="inicio"
@@ -135,7 +135,7 @@
               <input
                 formControlName="fecha_fin"
                 maxlength="10"
-                type="text"
+                type="date"
                 class="form-control"
                 placeholder="YYYY/MM/DD"
                 aria-label="inicio"
@@ -179,9 +179,9 @@
               </span>
 
               <select formControlName="listaTrabajos">
-                <option [ngValue]="null">Elige marca</option>
+                <option [ngValue]="null">Elige tipo Trabajo</option>
                 <option *ngFor="let tip of tipo" [ngValue]="tip">
-                  {{ tip.nombreTipoTrabajo }}
+                  {{ tip.nombreTipoTrabajo}}
                 </option>
               </select>
             </div>
@@ -210,7 +210,7 @@
     </div>
   </div>
 
-  <!-------------------------------EDUCACION---------------------------------------------->
+  <!------------------------------EDUCACION---------------------------------------------->
   <section class="educacion">
     <h2 class="titulo-secciones">Educacion</h2>
     <button
@@ -237,7 +237,7 @@
             <td>{{ educacion.nombreEducacion }}</td>
             <td>{{ educacion.fechaInicio }}</td>
             <td>{{ educacion.fechaFin }}</td>
-            <td>{{ educacion.tipoEducacion }}</td>
+            <td>{{ educacion.tipoEducacion.nombreTipoEducacion}}</td>
 
             <td *ngIf="ulogged != ''">
               <button
@@ -264,7 +264,7 @@
       </table>
     </div>
 
-    <!-------------------------------------------------------------------------------------------------->
+    <!----------------------------------MODAL EDUCACION------------------------------------------>
 
     <section>
       <!-- Modal -->
@@ -328,7 +328,7 @@
                   <input
                     formControlName="fechaInicio"
                     maxlength="10"
-                    type="text"
+                    type="date"
                     class="form-control"
                     placeholder="YYYY/MM/DD"
                     aria-label="inicio"
@@ -349,7 +349,7 @@
                   <input
                     formControlName="fechaFin"
                     maxlength="10"
-                    type="text"
+                    type="date"
                     class="form-control"
                     placeholder="YYYY/MM/DD"
                     aria-label="apellido"
@@ -369,14 +369,14 @@
                       class="fa-solid fa-book"
                     ></i>
                   </span>
-                  <input
-                    formControlName="tipoEducacion"
-                    type="text"
-                    class="form-control"
-                    placeholder="tipo de estudio"
-                    aria-label="apellido"
-                    aria-describedby="addon-wrapping"
-                  />
+
+                  <select formControlName="tipoEducacion">
+                    <option [ngValue]="null">Elige marca</option>
+                    <option *ngFor="let tip of tipoEdu" [ngValue]="tip">
+                      {{ tip.nombreTipoEducacion}}
+                    </option>
+                  </select>
+             
                 </div>
                 <div class="modal-footer">
                   <button

@@ -31,7 +31,6 @@ export class HeaderComponent implements OnInit {
   }
 
 
-
   
    ngOnInit(): void {
 
@@ -48,6 +47,8 @@ this.ulogged= this.loginService.getUserLogged();
   salir():void{
     this.loginService.deleteToken();
     this.ulogged="";
+    window.location.reload();
+
   }
 }
 

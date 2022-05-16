@@ -4,7 +4,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PersonaService } from 'src/app/servicios/persona.service';
 import { ToastrService } from 'ngx-toastr';
-import { ExperienciaLaboral } from 'src/app/experiencia-laboral';
+import { ExperienciaLaboral } from 'src/app/clases/experiencia-laboral';
+import { Educacion } from 'src/app/clases/educacion';
 
 
 
@@ -15,21 +16,24 @@ import { ExperienciaLaboral } from 'src/app/experiencia-laboral';
   styleUrls: ['./info.component.css'],
 })
 export class InfoComponent implements OnInit {
-  aparecerForm = false;
-  misDatos: any = [];
-  ulogged: string = '';
-  arrayEducacion: any = [];
+  //aparecerForm = false;
+  
+  /**variables educacion***/
   form: FormGroup;
+  misDatos: any = [];
+  arrayEducacion: any = [];
+  tipoEdu!:Educacion[];
+
+  /**variables experiencia***/
+  formExperiencia:FormGroup;
   listaTrabajos:any=[];
+  tipoTrabajo:any=[];
+  tipo!: ExperienciaLaboral[];
+
+ /****Variables comunes*****/
+  ulogged: string = '';
   accion:string="Agregar";
   id:number|undefined;
-  formExperiencia:FormGroup;
-  //listaTrabajos:FormControl;
-  tipoTrabajo:any=[];
-
-  tipo!: ExperienciaLaboral[];
-  //tipoElegida: ExperienciaLaboral = null;
-
 
   constructor(
     private http: HttpClient,
@@ -55,7 +59,7 @@ this.formExperiencia= this.formBuilder.group({
 }),
 
 
-this.listaTrabajos = this.formExperiencia.controls['listaTrabajos'] as FormControl
+//this.listaTrabajos = this.formExperiencia.controls['listaTrabajos'] as FormControl
 
 
 
@@ -83,16 +87,6 @@ this.listaTrabajos = this.formExperiencia.controls['listaTrabajos'] as FormContr
       ],
       tipoEducacion: ['', Validators.required],
     });
-
-
-/*   this.http.get("api/tipoTrabajo/ver").subscribe(data=>{
-      this.tipoTrabajo=data;
-      console.log(this.tipoTrabajo)
-    }) */
-    this.personaService.getTipo().subscribe(data=>{
-      this.tipo=data;
-      
-    })
   
 
   }
@@ -102,7 +96,10 @@ this.listaTrabajos = this.formExperiencia.controls['listaTrabajos'] as FormContr
   ngOnInit(): void {
     this.ulogged = this.loginService.getUserLogged();
     this.verEducacion();
-    this.verExperiencia()
+    this.verExperiencia();
+    this.verTipoTrabajo();
+    this.getTipoEducacion()
+
   }
 
   verExperiencia(){
@@ -231,9 +228,10 @@ this.listaTrabajos = this.formExperiencia.controls['listaTrabajos'] as FormContr
 
     })
     
+    
   }
 
-  /**=====================LISTA TIPO TRABAJO ========================================= */
+  /**=====================LISTA TIPO TRABAJO // TIPO EDUCACION========================================= */
   /* verTipoTrabajo(){
     this.personaService.verTipo().subscribe(data=>{
       //this.listaTrabajos=data;
@@ -241,7 +239,20 @@ this.listaTrabajos = this.formExperiencia.controls['listaTrabajos'] as FormContr
     })
   } */
 
+
+
+verTipoTrabajo(){
    
+  this.personaService.getTipo().subscribe(data=>{
+    this.tipo=data;
+    
+  })
 
-
+}
+getTipoEducacion(){
+  this.personaService.getTipoEducacion().subscribe(data=>{
+    this.tipoEdu=data;
+    console.log(data)
+  })
+}
 }

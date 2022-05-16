@@ -1,0 +1,12 @@
+.icono-verde{
+    color: green;
+}
+.icono-rojo{
+    color: red;
+}
+
+.botones-proyecto, .botonEducacion{
+    border-style: none;
+    background-color: transparent;
+    
+}
