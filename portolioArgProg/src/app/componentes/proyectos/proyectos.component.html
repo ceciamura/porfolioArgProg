@@ -43,7 +43,7 @@
             <div class="face face2">
                 <div class="content">
                     <h3>
-                        <a class="tituloProyecto"href={{proyecto.github}} target="_blank"><i class="fa-brands fa-github"></i>{{proyecto.nombre}}</a>
+                        <a class="tituloProyecto"href={{proyecto.github}} target="_blank"><i id="github" class="fa-brands fa-github"></i>{{proyecto.nombre}}</a>
                     </h3>
                     <p>Se utilizó:</p>
                     <ul class="listaProyecto" *ngFor="let tecno of proyecto.tecnologias"><li>{{tecno.nombre}}</li></ul>
@@ -126,7 +126,7 @@
                   </span>
                   <input
                     formControlName="portada"
-                    type="text"
+                    type="img"
                     class="form-control"
                     placeholder="Portada url"
                     aria-label="github"
@@ -156,6 +156,28 @@
                     aria-describedby="addon-wrapping"
                   />
                 </div>
+               <!--  <div class="input-group flex-nowrap">
+                  <span class="input-group-text" id="addon-wrapping">
+                    <i
+                      [class.icono-verde]="
+                        this.formProyecto.get('tipoProyecto')?.valid
+                      "
+                      [class.icono-rojo]="
+                        this.formProyecto.get('tipoProyecto')?.invalid &&
+                        this.formProyecto.get('tipoProyecto')?.touched
+                      "
+                      class="fa-solid fa-book"
+                    ></i>
+                  </span>
+    
+                  <select formControlName="tecnologias">
+                    <option [ngValue]="null">Elige tipo Trabajo</option>
+                    <option *ngFor="let tecno of misProyectos" [ngValue]="tecno">
+                      {{ tecno.tecnologias.nombre}}
+                    </option>
+                  </select>
+                </div> -->
+
     
                 <div class="modal-footer">
                   <button

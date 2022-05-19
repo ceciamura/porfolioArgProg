@@ -39,7 +39,8 @@ export class ProyectosComponent implements OnInit {
         Validators.required,
         Validators.minLength(10),
         Validators.maxLength(10),
-      ]]
+      ]],
+      //tecnologias:['', [Validators.required]]
     })
   }
 
@@ -66,7 +67,8 @@ export class ProyectosComponent implements OnInit {
       nombre:this.formProyecto.get('nombre')?.value,
       github:this.formProyecto.get('github')?.value,
       portada:this.formProyecto.get('portada')?.value,
-      anio:this.formProyecto.get('anio')?.value      
+      anio:this.formProyecto.get('anio')?.value,  
+      tecnologias: this.formProyecto.get('tecnologias')?.value    
     }
     console.log(proyecto)
   
@@ -112,7 +114,8 @@ export class ProyectosComponent implements OnInit {
       nombre:proyecto.nombre,
       github:proyecto.github,
       portada:proyecto.portada,
-      anio:proyecto.anio
+      anio:proyecto.anio,
+      tecnologias:proyecto.tecnologias
     })
     console.log(proyecto)
   }

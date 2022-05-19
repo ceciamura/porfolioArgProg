@@ -1,34 +1,38 @@
 
 <section class="habilidades">
-    <h2 class="titulo-secciones">Habilidades</h2>
-    <a *ngIf="ulogged!=''" ><i class="fa-solid fa-pen"></i></a>
+    <h2 class="titulo-secciones">Hard Skills</h2>
     <div class="habilidades-container">
     <div class="html-css">
+        
       <circle-progress
+      
             [percent]="85"
-            [radius]="100"
-            [outerStrokeWidth]="16"
+            [radius]="60"
+            [outerStrokeWidth]="11"
             [imageSrc]="'./assets/html-css-logo-1.png'"
             [showImage]="true"
-            [imageHeight]="110"
-            [imageWidth]="110"
+            [imageHeight]="60"
+            [imageWidth]="60"
             [innerStrokeWidth]="8"
             [outerStrokeColor]="'#e24f24'"
             [innerStrokeColor]="'#f2895c'"
             [animation]="true"
             [animationDuration]="300"
+            
 >     </circle-progress>
+
    </div>   
   
     <div class="Javascript">
+      
         <circle-progress
-            [percent]="85"
-            [radius]="100"
-            [outerStrokeWidth]="16"
+            [percent]="50"
+            [radius]="60"
+            [outerStrokeWidth]="11"
             [imageSrc]="'./assets/js-logo-1.png'"
             [showImage]="true"
-            [imageHeight]="110"
-            [imageWidth]="110"
+            [imageHeight]="60"
+            [imageWidth]="60"
             [innerStrokeWidth]="8"
             [outerStrokeColor]="'#fdd83c'"
             [innerStrokeColor]="'#d4b830'" 
@@ -37,14 +41,15 @@
 >     </circle-progress>
     </div>
     <div class="Angular">
+      
         <circle-progress
-            [percent]="85"
-            [radius]="100"
-            [outerStrokeWidth]="16"
+            [percent]="50"
+            [radius]="60"
+            [outerStrokeWidth]="11"
             [imageSrc]="'./assets/angular-1.png'"
             [showImage]="true"
-            [imageHeight]="110"
-            [imageWidth]="110"
+            [imageHeight]="60"
+            [imageWidth]="60"
             [innerStrokeWidth]="8"
             [outerStrokeColor]="'#b62f31'"
             [innerStrokeColor]="'#e23236'" 
@@ -53,14 +58,15 @@
 >     </circle-progress>
     </div>
     <div class="mysql">
+      
         <circle-progress
-            [percent]="85"
-            [radius]="100"
-            [outerStrokeWidth]="16"
+            [percent]="60"
+            [radius]="60"
+            [outerStrokeWidth]="11"
             [imageSrc]="'./assets/mysql-1.png'"
             [showImage]="true"
-            [imageHeight]="110"
-            [imageWidth]="110"
+            [imageHeight]="60"
+            [imageWidth]="60"
             [innerStrokeWidth]="8"
             [outerStrokeColor]="'#235e70'"
             [innerStrokeColor]="'#e87a01'" 
@@ -69,14 +75,15 @@
 >     </circle-progress>
         </div>
     <div class="java">
+     
         <circle-progress
-            [percent]="85"
-            [radius]="100"
-            [outerStrokeWidth]="16"
+            [percent]="40"
+            [radius]="60"
+            [outerStrokeWidth]="11"
             [imageSrc]="'./assets/java-1.png'"
             [showImage]="true"
-            [imageHeight]="110"
-            [imageWidth]="110"
+            [imageHeight]="60"
+            [imageWidth]="60"
             [innerStrokeWidth]="8"
             [outerStrokeColor]="'#e1191c'"
             [innerStrokeColor]="'#066cb5'" 
@@ -85,14 +92,15 @@
 >     </circle-progress>
     </div>
     <div class="GitHub-1">
-        <circle-progress
+      
+        <circle-progress 
             [percent]="85"
-            [radius]="100"
-            [outerStrokeWidth]="16"
+            [radius]="60"
+            [outerStrokeWidth]="11"
             [imageSrc]="'./assets/github-1.png'"
             [showImage]="true"
-            [imageHeight]="110"
-            [imageWidth]="110"
+            [imageHeight]="60"
+            [imageWidth]="60"
             [innerStrokeWidth]="8"
             [outerStrokeColor]="'#776b6b'"
             [innerStrokeColor]="'#000000'" 
@@ -101,4 +109,190 @@
 >     </circle-progress>
     </div>
 </div>
+
+
+
+<!----------------------------MODAL HARD SKILLS--------------------------------------------------------->
+<div
+    class="modal fade"
+    id="modalHardSkill"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="formHardSkills"(ngSubmit)="onFormSubmit()" > 
+            <h5 class="titulo">{{ accion | uppercase }} Hard SKILLS</h5>
+            
+            <div class="input-group flex-nowrap">
+              <span class="input-group-text" id="addon-wrapping">
+                <i
+                  [class.icono-verde]="
+                    this.formHardSkills.get('porcentaje')?.valid
+                  "
+                  [class.icono-rojo]="
+                    this.formHardSkills.get('porcentaje')?.invalid &&
+                    this.formHardSkills.get('porcentaje')?.touched
+                  "
+                  class="fa-solid fa-book"
+                ></i>
+              </span>
+                <input
+                  formControlName="porcentaje"
+                  type="text"
+                  class="form-control"
+                  placeholder="Editar porcentaje"
+                  aria-label="nombre"
+                  aria-describedby="addon-wrapping"
+                />
+            </div>
+
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                [disabled]="this.formHardSkills.invalid"
+                type="submit"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+                
+                ><!-- (click) = "onPatch()" -->
+                Submit
+            </button>
+            
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<!----------------------------SOFT SKILLS--------------------------------------------------------->
+
+<section class="soft">    
+    
+    <h2 class="titulo-secciones">Soft Skills</h2>
+    <button
+    type="button"
+    class="botonEducacion"
+    data-bs-toggle="modal"
+    data-bs-target="#modalSkill"
+  >
+    <a *ngIf="ulogged != ''"> <i class="fa-solid fa-plus"></i></a>
+  </button>
+    <div class="soft-skills">
+       
+   
+        <ol class="gradient-list">
+          <li *ngFor="let skill of softSkillList">
+              {{skill.softSkills}}
+          
+            <button *ngIf="ulogged != ''"
+              type="button"
+              class="botonEducacion"
+              data-bs-toggle="modal"
+              data-bs-target="#modalSkill"
+            >
+              <i
+                (click)="editarSoftSkills(skill)"
+                class="fa-solid fa-pen-to-square text-info"
+              ></i
+              >&nbsp;
+            </button>
+            <button *ngIf="ulogged != ''" class="botonEducacion">
+              <i
+                (click)="eliminarSoftSkills(skill.id)"
+                class="fa-solid fa-trash-can text-danger"
+              ></i>
+            </button></li>
+          
+        </ol>  
+
+</div>
+</section>
+
+<!------------------------MODAL SOFT SKILLS------------------------------------------------------>
+<div
+    class="modal fade"
+    id="modalSkill"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="formSoftSkills" (ngSubmit)="guardarSoftSKills()" > 
+            <h5 class="titulo">{{ accion | uppercase }} SOFT SKILLS</h5>
+            
+            <div class="input-group flex-nowrap">
+              <span class="input-group-text" id="addon-wrapping">
+                <i
+                  [class.icono-verde]="
+                    this.formSoftSkills.get('softSkills')?.valid
+                  "
+                  [class.icono-rojo]="
+                    this.formSoftSkills.get('softSkills')?.invalid &&
+                    this.formSoftSkills.get('softSkills')?.touched
+                  "
+                  class="fa-solid fa-book"
+                ></i>
+              </span>
+                <input
+                  formControlName="softSkills"
+                  type="text"
+                  class="form-control"
+                  placeholder="Nombre softSkills"
+                  aria-label="nombre"
+                  aria-describedby="addon-wrapping"
+                />
+              </div>
+           
+
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                [disabled]="this.formSoftSkills.invalid"
+                type="submit"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+                (ngSubmit)="guardarSoftSKills()"
+                >
+                Submit
+            </button>
+            
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>

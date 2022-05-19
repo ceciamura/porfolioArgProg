@@ -55,12 +55,12 @@ img{
     font-family:'Anek Odia', sans-serif;
     text-align: center;
 }
-.iconos>.fa-facebook{
+a>.fa-facebook{
     color: rgb(14,142,241);
     font-size: 3rem;    
 }
 
-.iconos>.fa-instagram {
+a>.fa-instagram {
     font-size: 3rem;
     color: transparent;
     background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
@@ -69,19 +69,23 @@ img{
     -webkit-background-clip: text;
 }
 
-.iconos>.fa-linkedin{
+a>.fa-linkedin{
     font-size: 3rem;
     color:rgb(2,117,183)
 }
 
-.iconos>.fa-github{
+a>.fa-github{
     font-size: 3rem;
     color:#000;
 }
 
 /***************BANNER*****************************/
 .banner{
-    background-color: rgb(255,112,143);
+    background: #FF5F6D;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #FFC371, #FF5F6D);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #FFC371, #FF5F6D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+   /*  background-color: rgb(255,112,143); */
     min-height: 75vh;
     display: flex;
     
@@ -125,28 +129,6 @@ img{
     background-color: rgba(107, 88, 94, 0.8);
 }
 
-/***********************HABILIDADES***************************************/
-.habilidades-container{
-    display: grid;
-grid-template-columns: repeat(3, 1fr);
-grid-template-rows: repeat(2, 1fr);
-justify-items: center;
-align-items: center;
-gap: 2rem;
-
-}
-
-.habilidades-container img{
-    width: 50%;
-}
-
-.w3-light-grey{
-    margin-top: 1rem;
-}
-
-/* .w3-container{
-    background: linear-gradient(90deg, rgba(230, 115, 153, 0.8), rgba(242, 166, 64, 0.8));;
-} */
 
 /*********************PROYECTOS*********************************/
 .container {

@@ -17,7 +17,7 @@ import { Educacion } from 'src/app/clases/educacion';
 })
 export class InfoComponent implements OnInit {
   //aparecerForm = false;
-  
+  persona:any=[];
   /**variables educacion***/
   form: FormGroup;
   misDatos: any = [];
@@ -59,7 +59,7 @@ this.formExperiencia= this.formBuilder.group({
 }),
 
 
-//this.listaTrabajos = this.formExperiencia.controls['listaTrabajos'] as FormControl
+
 
 
 
@@ -93,13 +93,22 @@ this.formExperiencia= this.formBuilder.group({
 
 
 
+
   ngOnInit(): void {
     this.ulogged = this.loginService.getUserLogged();
     this.verEducacion();
     this.verExperiencia();
     this.verTipoTrabajo();
     this.getTipoEducacion()
+    this.verPersonas();
 
+  }
+
+
+  verPersonas(){
+    this.personaService.verPersonas().subscribe(data=>{
+      this.persona=data;
+    })
   }
 
   verExperiencia(){
@@ -116,6 +125,8 @@ this.formExperiencia= this.formBuilder.group({
       fecha_fin: this.formExperiencia.get('fecha_fin')?.value,
       descripcion: this.formExperiencia.get('descripcion')?.value,
       tipoTrabajos: this.formExperiencia.get('listaTrabajos')?.value
+    
+
     }
     console.log(experiencia)
     if(this.id==undefined){
@@ -125,6 +136,7 @@ this.formExperiencia= this.formBuilder.group({
           'Educacion registrada'
         );
         this.verExperiencia();
+        
         this.formExperiencia.reset();
        })
     }else{

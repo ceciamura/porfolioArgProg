@@ -8,6 +8,7 @@ import { Educacion } from '../clases/educacion';
 
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -93,6 +94,32 @@ guardarProyecto(proyecto:any):Observable<any>{
 actualizarProyecto(proyecto:any):Observable<any>{
   return this.http.put(this.api + "proyecto/edit", proyecto)
 } 
+
+/**************SOFTSKILLS SERVICE******************************** */
+
+verSoftSkills():Observable<any>{
+  return this.http.get(this.api + "soft/ver")
+  //return this.http.get(this.api + "soft/ver")
+}
+
+/* getTipoSoft(): Observable<any[]> {
+  return this.http.get(this.api + "softSkills/ver").pipe(
+    map(soft => soft as any[])
+  );
+}  */
+
+eliminarSoftSkills(id:number):Observable<any>{
+  return this.http.delete(this.api+ "soft/delete/"+id)
+}
+
+guardarSoftSkills(softSkills:any):Observable<any>{
+  return this.http.post(this.api + "soft/new", softSkills)
+}
+
+actualizarSoftSkills(softSkills:any):Observable<any>{
+  return this.http.put(this.api + "soft/edit", softSkills)
+} 
+
 }
 
 
