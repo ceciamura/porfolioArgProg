@@ -1,29 +1,63 @@
 
 <section class="habilidades">
     <h2 class="titulo-secciones">Hard Skills</h2>
-    <div class="habilidades-container">
-    <div class="html-css">
-        
-      <circle-progress
+   
+    <button
+    type="button"
+    class="botonEducacion"
+    data-bs-toggle="modal"
+    data-bs-target="#modalHardSkill"
+  >
+    <a *ngIf="ulogged != ''"> <i class="fa-solid fa-plus"></i></a>
+  </button>
+    <div class="habilidades-container" >
+    <div class="html-css" *ngFor="let tecno of hardSkillList"> 
+      <div class="botonesHard">
+      <button *ngIf="ulogged != ''"
+      type="button"
+      class="botonEducacion"
+      data-bs-toggle="modal"
+      data-bs-target="#modalHardSkill"
+    >
+      <i
+      (click)="editarHardSkills(tecno)"
+        class="fa-solid fa-pen-to-square text-info"
+      ></i
+      >&nbsp;
+    </button>
+    <button *ngIf="ulogged != ''" class="botonEducacion">
+      <i
+        (click)="eliminarHardSkills(tecno.id)"
+        class="fa-solid fa-trash-can text-danger"
+      ></i>
+    </button>
+  </div>
+
+    
+      <circle-progress 
       
-            [percent]="85"
+            [percent]="tecno.porcentaje"
             [radius]="60"
             [outerStrokeWidth]="11"
-            [imageSrc]="'./assets/html-css-logo-1.png'"
+            [imageSrc]="tecno.logo"
             [showImage]="true"
             [imageHeight]="60"
             [imageWidth]="60"
             [innerStrokeWidth]="8"
-            [outerStrokeColor]="'#e24f24'"
-            [innerStrokeColor]="'#f2895c'"
+            [outerStrokeColor]="tecno.colorExterno"
+            [innerStrokeColor]="tecno.colorInterno"
             [animation]="true"
             [animationDuration]="300"
+                        
+            
             
 >     </circle-progress>
 
-   </div>   
   
-    <div class="Javascript">
+  </div>
+  </div>
+
+  <!--   <div class="Javascript">
       
         <circle-progress
             [percent]="50"
@@ -57,6 +91,8 @@
             [animationDuration]="300"
 >     </circle-progress>
     </div>
+
+
     <div class="mysql">
       
         <circle-progress
@@ -108,7 +144,7 @@
             [animationDuration]="300"
 >     </circle-progress>
     </div>
-</div>
+</div> -->
 
 
 
@@ -127,11 +163,12 @@
             type="button"
             class="btn-close"
             data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
+            aria-label="Close"        
+          >
+          <a *ngIf="ulogged != ''"> <i class="fa-solid fa-plus"></i></a></button>
         </div>
         <div class="modal-body">
-            <form [formGroup]="formHardSkills"(ngSubmit)="onFormSubmit()" > 
+            <form [formGroup]="formHardSkills"(ngSubmit)="guardarHardSKills()"> 
             <h5 class="titulo">{{ accion | uppercase }} Hard SKILLS</h5>
             
             <div class="input-group flex-nowrap">
@@ -156,6 +193,74 @@
                   aria-describedby="addon-wrapping"
                 />
             </div>
+            <div class="input-group flex-nowrap">
+              <span class="input-group-text" id="addon-wrapping">
+                <i
+                  [class.icono-verde]="
+                    this.formHardSkills.get('logo')?.valid
+                  "
+                  [class.icono-rojo]="
+                    this.formHardSkills.get('logo')?.invalid &&
+                    this.formHardSkills.get('logo')?.touched
+                  "
+                  class="fa-solid fa-book"
+                ></i>
+              </span>
+                <input
+                  formControlName="logo"
+                  type="text"
+                  class="form-control"
+                  placeholder="Coloque URL imagen"
+                  aria-label="nombre"
+                  aria-describedby="addon-wrapping"
+                />
+            </div>
+            <div class="input-group flex-nowrap">
+              <span class="input-group-text" id="addon-wrapping">
+                <i
+                  [class.icono-verde]="
+                    this.formHardSkills.get('colorExterno')?.valid
+                  "
+                  [class.icono-rojo]="
+                    this.formHardSkills.get('colorExterno')?.invalid &&
+                    this.formHardSkills.get('colorExterno')?.touched
+                  "
+                  class="fa-solid fa-book"
+                ></i>
+              </span>
+                <input
+                  formControlName="colorExterno"
+                  type="color"
+                  class="form-control"
+                  placeholder="Coloque URL imagen"
+                  aria-label="nombre"
+                  aria-describedby="addon-wrapping"
+                 
+                />
+            </div>
+            <div class="input-group flex-nowrap">
+              <span class="input-group-text" id="addon-wrapping">
+                <i
+                  [class.icono-verde]="
+                    this.formHardSkills.get('colorInterno')?.valid
+                  "
+                  [class.icono-rojo]="
+                    this.formHardSkills.get('colorInterno')?.invalid &&
+                    this.formHardSkills.get('colorInterno')?.touched
+                  "
+                  class="fa-solid fa-book"
+                ></i>
+              </span>
+                <input
+                  formControlName="colorInterno"
+                  type="color"
+                  class="form-control"
+                  placeholder="Coloque URL imagen"
+                  aria-label="nombre"
+                  aria-describedby="addon-wrapping"
+                  
+                />
+            </div>
 
             <div class="modal-footer">
               <button
@@ -166,15 +271,16 @@
                 Close
               </button>
               <button
-                [disabled]="this.formHardSkills.invalid"
-                type="submit"
-                class="btn btn-primary"
-                data-bs-dismiss="modal"
-                
-                ><!-- (click) = "onPatch()" -->
-                Submit
+              type="submit"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+              (ngSubmit)="guardarHardSKills()"
+              
+              ><!-- (click) = "onPatch()" -->
+              Submit
             </button>
             
+            <!-- [disabled]="this.formSoftSkills.invalid" -->
             </div>
           </form>
         </div>
@@ -201,6 +307,7 @@
           <li *ngFor="let skill of softSkillList">
               {{skill.softSkills}}
           
+              
             <button *ngIf="ulogged != ''"
               type="button"
               class="botonEducacion"
@@ -221,7 +328,7 @@
             </button></li>
           
         </ol>  
-
+   
 </div>
 </section>
 

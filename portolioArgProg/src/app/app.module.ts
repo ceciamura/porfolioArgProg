@@ -20,6 +20,13 @@ import { PortfolioComponent } from './componentes/portfolio/portfolio.component'
 import { FormularioDatosPersonalesComponent } from './componentes/formulario-datos-personales/formulario-datos-personales.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatListModule } from '@angular/material/list';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatSelectModule } from '@angular/material/select';
+
+
+
 
 
 
@@ -35,6 +42,7 @@ import { ToastrModule } from 'ngx-toastr';
     LoginComponent,
     PortfolioComponent,
     FormularioDatosPersonalesComponent,
+    
    
     
     
@@ -50,6 +58,16 @@ import { ToastrModule } from 'ngx-toastr';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    MatExpansionModule,
+    MatListModule,
+    MatSliderModule,
+    MatSelectModule,    
+  
+   /*  MatDialogModule,
+    MatDialog,
+    MatDialogRef */
+  
+    
    
    
   ],

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LoginService } from './login.service';
 import { ExperienciaLaboral } from '../clases/experiencia-laboral';
@@ -45,7 +45,7 @@ guardarExperiencia(persona:any):Observable<any>{
 }
 
 
-  /*----------------------servicio tipo experiencia* servicio tipo educacion--------------------------------------------**/
+  /*--------servicio tipo experiencia* servicio tipo educacion- *tipoTecnologias-------------------------------------------**/
  getTipo(): Observable<ExperienciaLaboral[]> {
   return this.http.get(this.api + "tipoTrabajo/ver").pipe(
     map(tipos => tipos as ExperienciaLaboral[])
@@ -57,6 +57,9 @@ getTipoEducacion(): Observable<Educacion[]> {
   );
 } 
 
+tipoTecnologia():Observable<any>{
+  return this.http.get(this.api + "tecnologia/ver")
+}
 
 
 /*----------------------servicio educacion-------------------------------------------------------**/
@@ -99,14 +102,7 @@ actualizarProyecto(proyecto:any):Observable<any>{
 
 verSoftSkills():Observable<any>{
   return this.http.get(this.api + "soft/ver")
-  //return this.http.get(this.api + "soft/ver")
 }
-
-/* getTipoSoft(): Observable<any[]> {
-  return this.http.get(this.api + "softSkills/ver").pipe(
-    map(soft => soft as any[])
-  );
-}  */
 
 eliminarSoftSkills(id:number):Observable<any>{
   return this.http.delete(this.api+ "soft/delete/"+id)
@@ -119,6 +115,25 @@ guardarSoftSkills(softSkills:any):Observable<any>{
 actualizarSoftSkills(softSkills:any):Observable<any>{
   return this.http.put(this.api + "soft/edit", softSkills)
 } 
+/**************HardSKILLS SERVICE******************************** */
+
+verHardSkills():Observable<any>{
+  return this.http.get(this.api + "hard/ver")
+}
+
+eliminarHardSkills(id:number):Observable<any>{
+  return this.http.delete(this.api+ "hard/delete/"+id)
+}
+
+guardarHardSkills(hardSkills:any):Observable<any>{
+  return this.http.post(this.api + "hard/new", hardSkills)
+}
+
+actualizarHardSkills(hardSkills:any):Observable<any>{
+  return this.http.put(this.api + "hard/edit", hardSkills)
+} 
+
+
 
 }
 

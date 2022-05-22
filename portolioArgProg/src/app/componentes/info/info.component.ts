@@ -132,11 +132,11 @@ this.formExperiencia= this.formBuilder.group({
     if(this.id==undefined){
       this.personaService.guardarExperiencia(experiencia).subscribe(data=>{
         this.toastr.success(
-          'Educacion registrada con exito',
-          'Educacion registrada'
+          'Experiencia laboral registrada con exito',
+          'Experiencia laboral registrada'
         );
         this.verExperiencia();
-        
+         
         this.formExperiencia.reset();
        })
     }else{
@@ -147,7 +147,7 @@ this.formExperiencia= this.formBuilder.group({
             this.accion="Editar";
             this.id=undefined;
             this.verExperiencia();
-            this.toastr.info("Educacion actualizada con exito", "Educacion actualizada");
+            this.toastr.info("Experiencia laboral actualizada con exito", "Experiencia laboral actualizada");
 
           }) 
     }

@@ -5,11 +5,6 @@ import { PersonaService } from 'src/app/servicios/persona.service';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient, HttpClientModule, HttpContext } from '@angular/common/http';
 
-/* interface HardSkill{
-  porcentaje!:string;
-
-} */
-
 
 @Component({
   selector: 'app-habilidades',
@@ -21,10 +16,11 @@ export class HabilidadesComponent implements OnInit {
   ulogged:string="";
   softSkillList!:any[];
   formSoftSkills:FormGroup;
-  //formHardSkills!:FormGroup;
+  formHardSkills:FormGroup;
   accion:string="Agregar";
   id:number| undefined;
-  porcentaje!:String;
+  hardSkillList!:any[];
+  
 
 
   constructor( private http: HttpClient,
@@ -37,43 +33,42 @@ export class HabilidadesComponent implements OnInit {
       this.formSoftSkills
       =this.formBuilder.group({
         softSkills:['', Validators.required],
+       
      })
-
+     
+     this.formHardSkills=this.formBuilder.group({
+      porcentaje :['', Validators.required],
+      logo:['', Validators.required],
+     colorExterno:['', Validators.required],
+      colorInterno:['', Validators.required]
+     })
      
     }
-  /*   get softSkills() {
-      return this.formSoftSkills.controls["softSkills"] as FormArray;
-    }
- */
+
   ngOnInit(): void {
     this.ulogged= this.loginService.getUserLogged();
-   this.verSoftSkills();
-  
+   this.verSoftSkills()
+   this.verPersonas()
+   this.verHardSkills()
+
   
        
   
   }
 
 
- 
+  verPersonas(){
+    this.personaService.verPersonas().subscribe(data=>{
+      console.log(data);
+    })
+  }
   
-  /*****************HARDSKILLS******************************************************************/
-  formHardSkills=this.formBuilder.group({
-    porcentaje:new FormControl('', Validators.required),
-  })
-
-  ngAfterViewInit(): void {
-    this.formHardSkills.get('porcentaje')?.valueChanges.subscribe(data => this.porcentaje = data);
+  verHardSkills(){
+    this.personaService.verHardSkills().subscribe(data=>{
+      this.hardSkillList=data;
+    })
   }
 
-  onFormSubmit():void{
-   console.log('Porcentaje:' +this.formHardSkills.get('porcentaje')?.value);
- }
-
- onPatch(): void {
-  this.formHardSkills.patchValue({   porcentaje: '85' });
-}
-  
 
 
 
@@ -90,24 +85,24 @@ verSoftSkills(){
   
 guardarSoftSKills() {
     
-  const softSkills: any = {
+  const softSkill: any = {
     softSkills: this.formSoftSkills.get('softSkills')?.value,
-    
   }
- 
+    
   if(this.id==undefined){
-    this.personaService.guardarSoftSkills(softSkills).subscribe(data=>{
+    this.personaService.guardarSoftSkills(softSkill).subscribe(data=>{
       this.toastr.success(
         'Soft Skill registrada con exito',
         'Soft Skill registrada'
       );
       this.verSoftSkills();
       this.formSoftSkills.reset();
+     
      })
   }else{
         //editamos
-        softSkills.id = this.id;
-        this.personaService.actualizarSoftSkills(softSkills).subscribe(data=>{
+        softSkill.id = this.id;
+        this.personaService.actualizarSoftSkills(softSkill).subscribe(data=>{
           this.formSoftSkills.reset();
           this.accion="Editar";
           this.id=undefined;
@@ -125,15 +120,71 @@ eliminarSoftSkills(id: number) {
   })
  }
 
- editarSoftSkills(softSkills:any){
+ editarSoftSkills(softSkill:any){
   //console.log(experiencia)
   this.accion="editar";
-  this.id= softSkills.id;
+  this.id= softSkill.id;
   this.formSoftSkills.patchValue({
-    softSkills:softSkills.softSkills,
+    softSkills:softSkill.softSkills,
   })
+  
 }
 
+
+/************************HARDSKILL************************************* */
+
+guardarHardSKills() {
+    
+  const hardSkills: any = {
+    porcentaje: this.formHardSkills.get('porcentaje')?.value,
+    logo: this.formHardSkills.get('logo')?.value,
+    colorExterno: this.formHardSkills.get('colorExterno')?.value,
+    colorInterno: this.formHardSkills.get('colorInterno')?.value 
+  }
+    
+ 
+  if(this.id==undefined){
+    this.personaService.guardarHardSkills(hardSkills).subscribe(data=>{
+      this.toastr.success(
+        'Hard Skill registrada con exito',
+        'Hard Skill registrada'
+      );
+      this.verHardSkills();
+      this.formHardSkills.reset();
+     
+     })
+  }else{
+        //editamos
+        hardSkills.id = this.id;
+        this.personaService.actualizarHardSkills(hardSkills).subscribe(data=>{
+          this.formSoftSkills.reset();
+          this.accion="Editar";
+          this.id=undefined;
+          this.verHardSkills();
+          this.toastr.info("Hard Skill actualizada con exito", "Hard Skill actualizada");
+
+        }) 
+  }
+}
+eliminarHardSkills(id: number) {
+  this.personaService.eliminarHardSkills(id).subscribe(data=>{
+    
+ this.toastr.error('Hard Skill eliminada con exito', 'Hard Skill eliminada');
+ this.verHardSkills();
+  })
+ }
+
+ editarHardSkills(hardSkills:any){
+  //console.log(experiencia)
+  this.accion="editar";
+  this.id= hardSkills.id;
+  this.formHardSkills.patchValue({    
+    porcentaje:hardSkills.porcentaje,
+    logo:hardSkills.logo,
+    colorExterno:hardSkills.colorExterno,
+    colorInterno:hardSkills.colorInterno
+  })
+}
 
 
 }

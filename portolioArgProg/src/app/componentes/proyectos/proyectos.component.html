@@ -1,6 +1,6 @@
 <section class="proyectos">
-    <h2 class="titulo-secciones">Proyectos</h2>
-    <button
+  <h2 class="titulo-secciones">Proyectos</h2>
+  <button
     type="button"
     class="botonEducacion"
     data-bs-toggle="modal"
@@ -8,199 +8,240 @@
   >
     <a *ngIf="ulogged != ''"> <i class="fa-solid fa-plus"></i></a>
   </button>
-   <div class="container">
-     
+  <div class="container">
     <div class="row">
-        <div *ngFor="let proyecto of misProyectos" class="col-4 card" >
-          <div *ngIf="ulogged != ''">
-            <button
-              type="button"
-              class="botones-proyecto"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal4"
-            >
-              <i
-                (click)="editarProyecto(proyecto)"
-                class="fa-solid fa-pen-to-square text-info"
-              ></i
-              >&nbsp;
-            </button>
-            <button class="botones-proyecto">
-              <i
-                (click)="eliminarProyecto(proyecto.id)"
-                class="fa-solid fa-trash-can text-danger"
-              ></i>
-            </button>
-          </div>
-            <div class="face face1">
-                <div class="content">
-                    <figure class="icon" id="consultorio">
-                        <img class="img-proyecto" src={{proyecto.portada}}  alt="Imágen proyecto consultorio odontológico">
-                    </figure>
-                  
-                </div>
-            </div>
-            <div class="face face2">
-                <div class="content">
-                    <h3>
-                        <a class="tituloProyecto"href={{proyecto.github}} target="_blank"><i id="github" class="fa-brands fa-github"></i>{{proyecto.nombre}}</a>
-                    </h3>
-                    <p>Se utilizó:</p>
-                    <ul class="listaProyecto" *ngFor="let tecno of proyecto.tecnologias"><li>{{tecno.nombre}}</li></ul>
-                        
-                </div>
-            </div>
+      <div *ngFor="let proyecto of misProyectos" class="col-4 card">
+        <div *ngIf="ulogged != ''">
+          <button
+            type="button"
+            class="botones-proyecto"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal4"
+          >
+            <i
+              (click)="editarProyecto(proyecto)"
+              class="fa-solid fa-pen-to-square text-info"
+            ></i
+            >&nbsp;
+          </button>
+          <button class="botones-proyecto">
+            <i
+              (click)="eliminarProyecto(proyecto.id)"
+              class="fa-solid fa-trash-can text-danger"
+            ></i>
+          </button>
         </div>
+        <div class="face face1">
+          <div class="content">
+            <!-- *ngIf="previsualizacion" -->
+            <figure class="icon" id="consultorio">
+              <img
+                class="img-proyecto"
+                src="{{ proyecto.portada }}"
+                alt="Imágen proyecto consultorio odontológico"
+              />
+            </figure>
+            <!-- [src]="previsualizacion" -->
+          </div>
+        </div>
+        <div class="face face2">
+          <div class="content">
+            <h3>
+              <a
+                class="tituloProyecto"
+                href="{{ proyecto.github }}"
+                target="_blank"
+                ><i id="github" class="fa-brands fa-github"></i
+                >{{ proyecto.nombre }}</a
+              >
+            </h3>
+            <p>Se utilizó:</p>
+            <ul
+              class="listaProyecto"
+              *ngFor="let tecno of proyecto.tecnologias"
+            >
+              <li>{{ tecno.nombre }}</li>
+            </ul>
 
+            <ul *ngFor="let tipo of selectedTecnologias">
+              <li>{{ tipo.nombre }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-    </div>
+  </div>
 
+  <!-------------------------MODAL PROYECTO--------------------------------------------------------->
 
-<!-------------------------MODAL PROYECTO--------------------------------------------------------->
-       
-<div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div
+    class="modal fade"
+    id="exampleModal4"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
         </div>
         <div class="modal-body">
-            <form [formGroup]="formProyecto" (ngSubmit)="guardarProyecto()">
-                <h5 class="titulo">{{ accion | uppercase }} Proyectos</h5>
-                <div class="input-group flex-nowrap">
+          <form [formGroup]="formProyecto" (ngSubmit)="guardarProyecto()">
+            <h5 class="titulo"> {{ accion | uppercase }} PROYECTO</h5>
+            <div class="input-group flex-nowrap">
+              <span class="input-group-text" id="addon-wrapping">
+                <i
+                  [class.icono-verde]="this.formProyecto.get('nombre')?.valid"
+                  [class.icono-rojo]="
+                    this.formProyecto.get('nombre')?.invalid &&
+                    this.formProyecto.get('nombre')?.touched
+                  "
+                  class="fa-solid fa-book"
+                ></i>
+              </span>
+              <input
+                formControlName="nombre"
+                type="text"
+                class="form-control"
+                placeholder="Nombre Proyecto"
+                aria-label="nombre"
+                aria-describedby="addon-wrapping"
+              />
+            </div>
+            <div class="input-group flex-nowrap">
+              <span class="input-group-text" id="addon-wrapping">
+                <i
+                  [class.icono-verde]="this.formProyecto.get('github')?.valid"
+                  [class.icono-rojo]="
+                    this.formProyecto.get('github')?.invalid &&
+                    this.formProyecto.get('github')?.touched
+                  "
+                  class="fa-solid fa-book"
+                ></i>
+              </span>
+              <input
+                formControlName="github"
+                type="text"
+                class="form-control"
+                placeholder="Github url"
+                aria-label="github"
+                aria-describedby="addon-wrapping"
+              />
+            </div>
+            <div class="input-group flex-nowrap">
+              <span class="input-group-text" id="addon-wrapping">
+                <i
+                  [class.icono-verde]="this.formProyecto.get('portada')?.valid"
+                  [class.icono-rojo]="
+                    this.formProyecto.get('portada')?.invalid &&
+                    this.formProyecto.get('portada')?.touched
+                  "
+                  class="fa-solid fa-book"
+                ></i>
+              </span>
+              <input
+                formControlName="portada"
+                type="url"
+                class="form-control"
+                placeholder="Portada url"
+                aria-label="github"
+                aria-describedby="addon-wrapping"
+              />
+            </div>
+            <div class="input-group flex-nowrap">
+              <span class="input-group-text" id="addon-wrapping">
+                <i
+                  [class.icono-verde]="this.formProyecto.get('anio')?.valid"
+                  [class.icono-rojo]="
+                    this.formProyecto.get('anio')?.invalid &&
+                    this.formProyecto.get('anio')?.touched
+                  "
+                  class="fa-solid fa-calendar-days"
+                ></i>
+              </span>
+              <input
+                formControlName="anio"
+                maxlength="10"
+                type="date"
+                class="form-control"
+                placeholder="YYYY/MM/DD"
+                aria-label="inicio"
+                aria-describedby="addon-wrapping"
+              />
+            </div>
+            <!--  <div> -->
+
+            <mat-expansion-panel
+            
+            >
+              <mat-expansion-panel-header>
+                <mat-panel-title> Elije la tecnologia usada </mat-panel-title>
+                <mat-panel-description> </mat-panel-description>
+              </mat-expansion-panel-header>
+              <mat-selection-list
+                #tecnoList
+                formControlName="selectedTecnologias"
+                (ngModelChange)="onGroupsChange($event)"
+              >
+                <mat-list-option
+                  *ngFor="let tipo of misTecnologias"
+                  [value]="tipo"
+                >
+                  {{ tipo.nombre }}
+                </mat-list-option>
+              </mat-selection-list>
+            </mat-expansion-panel>
+
+            <!--  <div class="input-group flex-nowrap">
                   <span class="input-group-text" id="addon-wrapping">
                     <i
                       [class.icono-verde]="
-                        this.formProyecto.get('nombre')?.valid
+                        this.formProyecto.get('imagen')?.valid
                       "
                       [class.icono-rojo]="
-                        this.formProyecto.get('nombre')?.invalid &&
-                        this.formProyecto.get('nombre')?.touched
-                      "
-                      class="fa-solid fa-book"
-                    ></i>
-                  </span>
-                  <input
-                    formControlName="nombre"
-                    type="text"
-                    class="form-control"
-                    placeholder="Nombre Proyecto"
-                    aria-label="nombre"
-                    aria-describedby="addon-wrapping"
-                  />
-                </div>
-                <div class="input-group flex-nowrap">
-                  <span class="input-group-text" id="addon-wrapping">
-                    <i
-                      [class.icono-verde]="
-                        this.formProyecto.get('github')?.valid
-                      "
-                      [class.icono-rojo]="
-                        this.formProyecto.get('github')?.invalid &&
-                        this.formProyecto.get('github')?.touched
-                      "
-                      class="fa-solid fa-book"
-                    ></i>
-                  </span>
-                  <input
-                    formControlName="github"
-                    type="text"
-                    class="form-control"
-                    placeholder="Github url"
-                    aria-label="github"
-                    aria-describedby="addon-wrapping"
-                  />
-                </div>
-                <div class="input-group flex-nowrap">
-                  <span class="input-group-text" id="addon-wrapping">
-                    <i
-                      [class.icono-verde]="
-                        this.formProyecto.get('portada')?.valid
-                      "
-                      [class.icono-rojo]="
-                        this.formProyecto.get('portada')?.invalid &&
-                        this.formProyecto.get('portada')?.touched
-                      "
-                      class="fa-solid fa-book"
-                    ></i>
-                  </span>
-                  <input
-                    formControlName="portada"
-                    type="img"
-                    class="form-control"
-                    placeholder="Portada url"
-                    aria-label="github"
-                    aria-describedby="addon-wrapping"
-                  />
-                </div>
-                <div class="input-group flex-nowrap">
-                  <span class="input-group-text" id="addon-wrapping">
-                    <i
-                      [class.icono-verde]="
-                        this.formProyecto.get('anio')?.valid
-                      "
-                      [class.icono-rojo]="
-                        this.formProyecto.get('anio')?.invalid &&
-                        this.formProyecto.get('anio')?.touched
+                        this.formProyecto.get('imagen')?.invalid &&
+                        this.formProyecto.get('imagen')?.touched
                       "
                       class="fa-solid fa-calendar-days"
                     ></i>
                   </span>
-                  <input
-                    formControlName="anio"
+                  <input 
+                    formControlName="imagen" 
                     maxlength="10"
-                    type="date"
+                    type="file"
                     class="form-control"
                     placeholder="YYYY/MM/DD"
                     aria-label="inicio"
                     aria-describedby="addon-wrapping"
                   />
-                </div>
-               <!--  <div class="input-group flex-nowrap">
-                  <span class="input-group-text" id="addon-wrapping">
-                    <i
-                      [class.icono-verde]="
-                        this.formProyecto.get('tipoProyecto')?.valid
-                      "
-                      [class.icono-rojo]="
-                        this.formProyecto.get('tipoProyecto')?.invalid &&
-                        this.formProyecto.get('tipoProyecto')?.touched
-                      "
-                      class="fa-solid fa-book"
-                    ></i>
-                  </span>
-    
-                  <select formControlName="tecnologias">
-                    <option [ngValue]="null">Elige tipo Trabajo</option>
-                    <option *ngFor="let tecno of misProyectos" [ngValue]="tecno">
-                      {{ tecno.tecnologias.nombre}}
-                    </option>
-                  </select>
-                </div> -->
-
-    
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-secondary"
-                    data-bs-dismiss="modal"
-                  >
-                    Close
-                  </button>
-                  <button
-                    [disabled]="this.formProyecto.invalid"
-                    type="submit"
-                    class="btn btn-primary"
-                    data-bs-dismiss="modal"
-                    (ngSubmit)="guardarProyecto()"
-                    >
-                    Submit
-                  </button>
-                </div>
-              </form>
+                </div>  -->
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                [disabled]="this.formProyecto.invalid"
+                type="submit"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+                (ngSubmit)="guardarProyecto()"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
-       
 </section>
