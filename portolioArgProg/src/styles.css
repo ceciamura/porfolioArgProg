@@ -54,10 +54,10 @@ img{
     
 }
 
-.modal-title{
+/* .modal-title{
     color:rgb(255,71,111);
 }
-
+ */
 .logo{
     max-width: 20%;  
 }
@@ -351,3 +351,34 @@ footer{
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/****************MODALES***********************************/
+
+
+.modal-backdrop.in{ opacity: 0; }
+.modal-box .modal{ top: 40px !important; }
+.modal-box .modal-dialog{
+    width: 400px;
+    margin: 10x auto 10px;
+    height: auto;
+}
+.modal-box .modal-dialog .modal-content{
+    text-align: center;
+    border-radius: 30px;
+    box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+.btn-close{
+    z-index: 100000;
+}
+.modal-box .modal-dialog .modal-content:before{
+    content: "";
+    background: linear-gradient(90deg, rgba(230, 115, 153, 0.8), rgba(242, 166, 64, 0.8));
+    position: absolute;
+    width: 100%;
+    height: 17%;
+    top: 0;
+    left: 0;
+    border-radius: 25px 25px 0 0;
+    z-index: 0;
+}

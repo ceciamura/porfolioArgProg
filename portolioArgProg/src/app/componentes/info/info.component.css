@@ -1,14 +1,36 @@
 .educacion{
     position: relative;
 }
-
-.icono-verde{
-    color: green;
-}
-.icono-rojo{
-    color: red;
+.titulo{
+    margin-top: -1.7rem;
+   
 }
 .botonEducacion{
     border-style: none;
     background-color: transparent;
+    
 }
+.input, .date{
+    width:80%;
+    margin-bottom: 1rem;
+    border:none !important;
+    box-shadow: none !important;
+    
+   
+    
+}
+.date{
+    margin-left:1.1rem;
+}
+
+::ng-deep .cdk-overlay-container {
+    z-index: 1200 !important;
+  }
+
+input, .input:hover{
+   
+    border: none !important;
+    
+
+}
+

@@ -32,8 +32,7 @@
       ></i>
     </button>
   </div>
-
-    
+  <p class="porcentaje">{{tecno.porcentaje}}%</p>
       <circle-progress 
       
             [percent]="tecno.porcentaje"
@@ -48,107 +47,22 @@
             [innerStrokeColor]="tecno.colorInterno"
             [animation]="true"
             [animationDuration]="300"
+       
+            
                         
             
             
 >     </circle-progress>
 
+
   
   </div>
   </div>
 
-  <!--   <div class="Javascript">
-      
-        <circle-progress
-            [percent]="50"
-            [radius]="60"
-            [outerStrokeWidth]="11"
-            [imageSrc]="'./assets/js-logo-1.png'"
-            [showImage]="true"
-            [imageHeight]="60"
-            [imageWidth]="60"
-            [innerStrokeWidth]="8"
-            [outerStrokeColor]="'#fdd83c'"
-            [innerStrokeColor]="'#d4b830'" 
-            [animation]="true"
-            [animationDuration]="300"
->     </circle-progress>
-    </div>
-    <div class="Angular">
-      
-        <circle-progress
-            [percent]="50"
-            [radius]="60"
-            [outerStrokeWidth]="11"
-            [imageSrc]="'./assets/angular-1.png'"
-            [showImage]="true"
-            [imageHeight]="60"
-            [imageWidth]="60"
-            [innerStrokeWidth]="8"
-            [outerStrokeColor]="'#b62f31'"
-            [innerStrokeColor]="'#e23236'" 
-            [animation]="true"
-            [animationDuration]="300"
->     </circle-progress>
-    </div>
-
-
-    <div class="mysql">
-      
-        <circle-progress
-            [percent]="60"
-            [radius]="60"
-            [outerStrokeWidth]="11"
-            [imageSrc]="'./assets/mysql-1.png'"
-            [showImage]="true"
-            [imageHeight]="60"
-            [imageWidth]="60"
-            [innerStrokeWidth]="8"
-            [outerStrokeColor]="'#235e70'"
-            [innerStrokeColor]="'#e87a01'" 
-            [animation]="true"
-            [animationDuration]="300"
->     </circle-progress>
-        </div>
-    <div class="java">
-     
-        <circle-progress
-            [percent]="40"
-            [radius]="60"
-            [outerStrokeWidth]="11"
-            [imageSrc]="'./assets/java-1.png'"
-            [showImage]="true"
-            [imageHeight]="60"
-            [imageWidth]="60"
-            [innerStrokeWidth]="8"
-            [outerStrokeColor]="'#e1191c'"
-            [innerStrokeColor]="'#066cb5'" 
-            [animation]="true"
-            [animationDuration]="300"
->     </circle-progress>
-    </div>
-    <div class="GitHub-1">
-      
-        <circle-progress 
-            [percent]="85"
-            [radius]="60"
-            [outerStrokeWidth]="11"
-            [imageSrc]="'./assets/github-1.png'"
-            [showImage]="true"
-            [imageHeight]="60"
-            [imageWidth]="60"
-            [innerStrokeWidth]="8"
-            [outerStrokeColor]="'#776b6b'"
-            [innerStrokeColor]="'#000000'" 
-            [animation]="true"
-            [animationDuration]="300"
->     </circle-progress>
-    </div>
-</div> -->
-
-
+ 
 
 <!----------------------------MODAL HARD SKILLS--------------------------------------------------------->
+<div class="modal-box">
 <div
     class="modal fade"
     id="modalHardSkill"
@@ -170,109 +84,48 @@
         <div class="modal-body">
             <form [formGroup]="formHardSkills"(ngSubmit)="guardarHardSKills()"> 
             <h5 class="titulo">{{ accion | uppercase }} Hard SKILLS</h5>
+
+            <mat-form-field class="input" appearance="legacy">
+              <mat-label>Porcentaje</mat-label>
+              <input matInput 
+              placeholder="Ingrese porcentaje"              
+              formControlName="porcentaje">                        
+            </mat-form-field>
+
+            <mat-form-field class="input" appearance="legacy">
+              <mat-label>Logo</mat-label>
+              <input matInput 
+              placeholder="Ingrese URL de imagen"              
+              formControlName="logo">                        
+            </mat-form-field>
+
+            <mat-form-field class="input" appearance="legacy">
+              <mat-label>Elija color externo</mat-label>
+              <input matInput type="color"                            
+              formControlName="colorExterno">                        
+            </mat-form-field>
+
+            <mat-form-field class="input" appearance="legacy">
+              <mat-label>Elija color interno</mat-label>
+              <input matInput type="color"                            
+              formControlName="colorInterno">                        
+            </mat-form-field>
+
             
-            <div class="input-group flex-nowrap">
-              <span class="input-group-text" id="addon-wrapping">
-                <i
-                  [class.icono-verde]="
-                    this.formHardSkills.get('porcentaje')?.valid
-                  "
-                  [class.icono-rojo]="
-                    this.formHardSkills.get('porcentaje')?.invalid &&
-                    this.formHardSkills.get('porcentaje')?.touched
-                  "
-                  class="fa-solid fa-book"
-                ></i>
-              </span>
-                <input
-                  formControlName="porcentaje"
-                  type="text"
-                  class="form-control"
-                  placeholder="Editar porcentaje"
-                  aria-label="nombre"
-                  aria-describedby="addon-wrapping"
-                />
-            </div>
-            <div class="input-group flex-nowrap">
-              <span class="input-group-text" id="addon-wrapping">
-                <i
-                  [class.icono-verde]="
-                    this.formHardSkills.get('logo')?.valid
-                  "
-                  [class.icono-rojo]="
-                    this.formHardSkills.get('logo')?.invalid &&
-                    this.formHardSkills.get('logo')?.touched
-                  "
-                  class="fa-solid fa-book"
-                ></i>
-              </span>
-                <input
-                  formControlName="logo"
-                  type="text"
-                  class="form-control"
-                  placeholder="Coloque URL imagen"
-                  aria-label="nombre"
-                  aria-describedby="addon-wrapping"
-                />
-            </div>
-            <div class="input-group flex-nowrap">
-              <span class="input-group-text" id="addon-wrapping">
-                <i
-                  [class.icono-verde]="
-                    this.formHardSkills.get('colorExterno')?.valid
-                  "
-                  [class.icono-rojo]="
-                    this.formHardSkills.get('colorExterno')?.invalid &&
-                    this.formHardSkills.get('colorExterno')?.touched
-                  "
-                  class="fa-solid fa-book"
-                ></i>
-              </span>
-                <input
-                  formControlName="colorExterno"
-                  type="color"
-                  class="form-control"
-                  placeholder="Coloque URL imagen"
-                  aria-label="nombre"
-                  aria-describedby="addon-wrapping"
-                 
-                />
-            </div>
-            <div class="input-group flex-nowrap">
-              <span class="input-group-text" id="addon-wrapping">
-                <i
-                  [class.icono-verde]="
-                    this.formHardSkills.get('colorInterno')?.valid
-                  "
-                  [class.icono-rojo]="
-                    this.formHardSkills.get('colorInterno')?.invalid &&
-                    this.formHardSkills.get('colorInterno')?.touched
-                  "
-                  class="fa-solid fa-book"
-                ></i>
-              </span>
-                <input
-                  formControlName="colorInterno"
-                  type="color"
-                  class="form-control"
-                  placeholder="Coloque URL imagen"
-                  aria-label="nombre"
-                  aria-describedby="addon-wrapping"
-                  
-                />
-            </div>
+            
+           
 
             <div class="modal-footer">
               <button
                 type="button"
-                class="btn btn-secondary"
+                class="btn"
                 data-bs-dismiss="modal"
               >
                 Close
               </button>
               <button
               type="submit"
-              class="btn btn-primary"
+              class="btn"
               data-bs-dismiss="modal"
               (ngSubmit)="guardarHardSKills()"
               
@@ -287,6 +140,7 @@
       </div>
     </div>
   </div>
+</div>
 <!----------------------------SOFT SKILLS--------------------------------------------------------->
 
 <section class="soft">    
@@ -333,6 +187,7 @@
 </section>
 
 <!------------------------MODAL SOFT SKILLS------------------------------------------------------>
+<div class="modal-box">
 <div
     class="modal fade"
     id="modalSkill"
@@ -353,8 +208,15 @@
         <div class="modal-body">
             <form [formGroup]="formSoftSkills" (ngSubmit)="guardarSoftSKills()" > 
             <h5 class="titulo">{{ accion | uppercase }} SOFT SKILLS</h5>
+
+            <mat-form-field class="input" appearance="legacy">
+              <mat-label>SoftSkill</mat-label>
+              <input matInput 
+              placeholder="Ingrese softSkill"              
+              formControlName="softSkills">                        
+            </mat-form-field>
             
-            <div class="input-group flex-nowrap">
+           <!--  <div class="input-group flex-nowrap">
               <span class="input-group-text" id="addon-wrapping">
                 <i
                   [class.icono-verde]="
@@ -375,13 +237,13 @@
                   aria-label="nombre"
                   aria-describedby="addon-wrapping"
                 />
-              </div>
+              </div> -->
            
 
             <div class="modal-footer">
               <button
                 type="button"
-                class="btn btn-secondary"
+                class="btn"
                 data-bs-dismiss="modal"
               >
                 Close
@@ -389,7 +251,7 @@
               <button
                 [disabled]="this.formSoftSkills.invalid"
                 type="submit"
-                class="btn btn-primary"
+                class="btn"
                 data-bs-dismiss="modal"
                 (ngSubmit)="guardarSoftSKills()"
                 >
@@ -402,4 +264,6 @@
       </div>
     </div>
   </div>
+  </div>
+  
 </section>

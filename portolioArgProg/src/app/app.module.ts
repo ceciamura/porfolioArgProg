@@ -24,7 +24,10 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSelectModule } from '@angular/material/select';
-
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -61,7 +64,11 @@ import { MatSelectModule } from '@angular/material/select';
     MatExpansionModule,
     MatListModule,
     MatSliderModule,
-    MatSelectModule,    
+    MatSelectModule,  
+    MatFormFieldModule,
+    MatInputModule  ,
+    MatDatepickerModule,
+    MatNativeDateModule
   
    /*  MatDialogModule,
     MatDialog,

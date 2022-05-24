@@ -1,8 +1,5 @@
-.icono-verde{
-    color: green;
-}
-.icono-rojo{
-    color: red;
+.titulo{
+   margin-top: -1.1rem;
 }
 
 .botones-proyecto, .botonEducacion{
@@ -12,4 +9,28 @@
 }
 #github{
     font-size: 1.5rem;
+}
+
+.input, .date{
+    width:80%;
+    margin-bottom: 1rem;
+    border:none !important;
+    box-shadow: none !important;
+    
+   
+    
+}
+.date{
+    margin-left:1.1rem;
+}
+
+::ng-deep .cdk-overlay-container {
+    z-index: 1200 !important;
+  }
+
+input, .input:hover{
+   
+    border: none !important;
+    
+
 }

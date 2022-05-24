@@ -6,6 +6,9 @@ import { PersonaService } from 'src/app/servicios/persona.service';
 import { ToastrService } from 'ngx-toastr';
 import { ExperienciaLaboral } from 'src/app/clases/experiencia-laboral';
 import { Educacion } from 'src/app/clases/educacion';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { FormGroupDirective, NgForm} from '@angular/forms';
+import {ErrorStateMatcher} from '@angular/material/core';
 
 
 

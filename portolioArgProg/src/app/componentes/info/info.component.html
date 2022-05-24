@@ -1,5 +1,8 @@
 <section class="info">
-  <section class="col-5">
+  <div class="container-fluid">
+  <div class="row">
+  <section class="col-sm-12 col-lg-5">
+    
     <h2 class="titulo-secciones">Experiencia laboral</h2>
 
     <button
@@ -45,174 +48,20 @@
               {{ item.tipoTrabajos.nombreTipoTrabajo }}
             </h6>
 
+
+           
+
             <p class="card-text">{{ item.descripcion }}</p>
             <p>Fecha de inicio: {{ item.fecha_inicio }}</p>
             <p>Fecha de finalizado: {{ item.fecha_fin }}</p>
           </div>
         </div>
       </div>
-    </div>
+    </div>  
   </section>
-  <!--------------------------MODAL EXPERIENCIA------------------------------------------------->
-  <div
-    class="modal fade"
-    id="exampleModal3"
-    tabindex="-1"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body">
-         <form [formGroup]="formExperiencia" (ngSubmit)="guardarExperiencia()"> 
-            <h5 class="titulo">{{ accion | uppercase }} EXPERIENCIA</h5>
-            <div class="input-group flex-nowrap">
-              <span class="input-group-text" id="addon-wrapping">
-                <i
-                  [class.icono-verde]="
-                    this.formExperiencia.get('nombre_experiencia')?.valid
-                  "
-                  [class.icono-rojo]="
-                    this.formExperiencia.get('nombre_experiencia')?.invalid &&
-                    this.formExperiencia.get('nombre_experiencia')?.touched
-                  "
-                  class="fa-solid fa-book"
-                ></i>
-              </span>
-              <input
-                formControlName="nombre_experiencia"
-                type="text"
-                class="form-control"
-                placeholder="Nombre experiencia"
-                aria-label="nombre"
-                aria-describedby="addon-wrapping"
-              />
-            </div>
-            <div class="input-group flex-nowrap">
-              <span class="input-group-text" id="addon-wrapping">
-                <i
-                  [class.icono-verde]="
-                    this.formExperiencia.get('fecha_inicio')?.valid
-                  "
-                  [class.icono-rojo]="
-                    this.formExperiencia.get('fecha_inicio')?.invalid &&
-                    this.formExperiencia.get('fecha_inicio')?.touched
-                  "
-                  class="fa-solid fa-calendar-days"
-                ></i>
-              </span>
-              <input
-                formControlName="fecha_inicio"
-                maxlength="10"
-                type="date"
-                class="form-control"
-                placeholder="YYYY/MM/DD"
-                aria-label="inicio"
-                aria-describedby="addon-wrapping"
-              />
-            </div>
-            <div class="input-group flex-nowrap">
-              <span class="input-group-text" id="addon-wrapping">
-                <i
-                  [class.icono-verde]="
-                    this.formExperiencia.get('fecha_fin')?.valid
-                  "
-                  [class.icono-rojo]="
-                    this.formExperiencia.get('fecha_fin')?.invalid &&
-                    this.formExperiencia.get('fecha_fin')?.touched
-                  "
-                  class="fa-solid fa-calendar-days"
-                ></i>
-              </span>
-              <input
-                formControlName="fecha_fin"
-                maxlength="10"
-                type="date"
-                class="form-control"
-                placeholder="YYYY/MM/DD"
-                aria-label="inicio"
-                aria-describedby="addon-wrapping"
-              />
-            </div>
-            <div class="input-group flex-nowrap">
-              <span class="input-group-text" id="addon-wrapping">
-                <i
-                  [class.icono-verde]="
-                    this.formExperiencia.get('descripcion')?.valid
-                  "
-                  [class.icono-rojo]="
-                    this.formExperiencia.get('descripcion')?.invalid &&
-                    this.formExperiencia.get('descripcion')?.touched
-                  "
-                  class="fa-solid fa-book"
-                ></i>
-              </span>
-              <input
-                formControlName="descripcion"
-                type="text"
-                class="form-control"
-                placeholder="Descripcion"
-                aria-label="apellido"
-                aria-describedby="addon-wrapping"
-              />
-            </div>
-            <div class="input-group flex-nowrap">
-              <span class="input-group-text" id="addon-wrapping">
-                <i
-                  [class.icono-verde]="
-                    this.formExperiencia.get('tipoExperiencia')?.valid
-                  "
-                  [class.icono-rojo]="
-                    this.formExperiencia.get('tipoExperiencia')?.invalid &&
-                    this.formExperiencia.get('tipoExperiencia')?.touched
-                  "
-                  class="fa-solid fa-book"
-                ></i>
-              </span>
-              
 
-              <select formControlName="listaTrabajos">
-                <option [ngValue]="null">Elige tipo Trabajo</option>
-                <option *ngFor="let tip of tipo" [ngValue]="tip">
-                  {{ tip.nombreTipoTrabajo}}
-                </option>
-              </select>
-            </div>
-
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button
-                [disabled]="this.formExperiencia.invalid"
-                type="submit"
-                class="btn btn-primary"
-                data-bs-dismiss="modal"
-                (ngSubmit)="guardarExperiencia()"
-              >
-                Submit
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!------------------------------EDUCACION---------------------------------------------->
-  <section class="educacion">
+   <!------------------------------EDUCACION---------------------------------------------->
+   <section class="col-sm-12 col-lg-7  educacion">
     <h2 class="titulo-secciones">Educacion</h2>
     <button
       type="button"
@@ -264,11 +113,107 @@
         </tbody>
       </table>
     </div>
+  </section>
+</div>
+</div>
+</section>
+  <!--------------------------MODAL EXPERIENCIA------------------------------------------------->
+  <div class="modal-box">
+  <div
+    class="modal fade"
+    id="exampleModal3"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+         <form [formGroup]="formExperiencia" (ngSubmit)="guardarExperiencia()"> 
+            <h5 class="titulo">{{ accion | uppercase }} EXPERIENCIA</h5>   
+              
+             
+              <mat-form-field class="input" appearance="legacy">
+                <mat-label>Nombre</mat-label>
+                <input matInput 
+                placeholder="Ingrese nombre de experiencia laboral"
+                
+                formControlName="nombre_experiencia">
+                      
+              </mat-form-field>
+               
+              <mat-form-field class="date" appearance="legacy">
+                <mat-label>Enter a date range</mat-label>
+                <mat-date-range-input formControlName="fecha_inicio" [rangePicker]="picker">
+                  <input matStartDate formControlName="fecha_inicio" placeholder="Start date">
+                  <input matEndDate formControlName="fecha_fin" placeholder="End date">
+                </mat-date-range-input>
+                <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+              </mat-form-field>
+
+              <mat-form-field class="input" appearance="legacy">
+                <mat-label>Descripcion</mat-label>
+                <input matInput 
+                placeholder="Describa brevemente su posicion"
+                
+                formControlName="descripcion">
+                      
+              </mat-form-field>
+
+              <mat-form-field clase="input" appearance="legacy">
+                <mat-label>Elegi tipo trabajo</mat-label>
+                <mat-select 
+                formControlName="listaTrabajos">
+                  <mat-option *ngFor="let tip of tipo" [value]="tip" >{{ tip.nombreTipoTrabajo}}</mat-option>
+                  
+                </mat-select>
+              </mat-form-field>
+           
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                [disabled]="this.formExperiencia.invalid"
+                type="submit"
+                class="btn"
+                data-bs-dismiss="modal"
+                (ngSubmit)="guardarExperiencia()"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+ 
 
     <!----------------------------------MODAL EDUCACION------------------------------------------>
 
     <section>
       <!-- Modal -->
+      <div class="modal-box">
       <div
         class="modal fade"
         id="exampleModal2"
@@ -293,97 +238,39 @@
                 (ngSubmit)="guardarEducacion()"
               >
                 <h5 class="titulo">{{ accion | uppercase }} EDUCACION</h5>
-                <div class="input-group flex-nowrap">
-                  <span class="input-group-text" id="addon-wrapping">
-                    <i
-                      [class.icono-verde]="
-                        this.form.get('nombreEducacion')?.valid
-                      "
-                      [class.icono-rojo]="
-                        this.form.get('nombreEducacion')?.invalid &&
-                        this.form.get('fechaInicio')?.touched
-                      "
-                      class="fa-solid fa-book"
-                    ></i>
-                  </span>
-                  <input
-                    formControlName="nombreEducacion"
-                    type="text"
-                    class="form-control"
-                    placeholder="Nombre Institucion"
-                    aria-label="nombre"
-                    aria-describedby="addon-wrapping"
-                  />
-                </div>
-                <div class="input-group flex-nowrap">
-                  <span class="input-group-text" id="addon-wrapping">
-                    <i
-                      [class.icono-verde]="this.form.get('fechaInicio')?.valid"
-                      [class.icono-rojo]="
-                        this.form.get('fechaInicio')?.invalid &&
-                        this.form.get('fechaInicio')?.touched
-                      "
-                      class="fa-solid fa-calendar-days"
-                    ></i>
-                  </span>
-                  <input
-                    formControlName="fechaInicio"
-                    maxlength="10"
-                    type="date"
-                    class="form-control"
-                    placeholder="YYYY/MM/DD"
-                    aria-label="inicio"
-                    aria-describedby="addon-wrapping"
-                  />
-                </div>
-                <div class="input-group flex-nowrap">
-                  <span class="input-group-text" id="addon-wrapping">
-                    <i
-                      [class.icono-verde]="this.form.get('fechaFin')?.valid"
-                      [class.icono-rojo]="
-                        this.form.get('fechaFin')?.invalid &&
-                        this.form.get('fechaFin')?.touched
-                      "
-                      class="fa-solid fa-calendar-days"
-                    ></i>
-                  </span>
-                  <input
-                    formControlName="fechaFin"
-                    maxlength="10"
-                    type="date"
-                    class="form-control"
-                    placeholder="YYYY/MM/DD"
-                    aria-label="apellido"
-                    aria-describedby="addon-wrapping"
-                  />
-                </div>
-                <div class="input-group flex-nowrap">
-                  <span class="input-group-text" id="addon-wrapping">
-                    <i
-                      [class.icono-verde]="
-                        this.form.get('tipoEducacion')?.valid
-                      "
-                      [class.icono-rojo]="
-                        this.form.get('tipoEducacion')?.invalid &&
-                        this.form.get('tipoEducacion')?.touched
-                      "
-                      class="fa-solid fa-book"
-                    ></i>
-                  </span>
 
-                  <select formControlName="tipoEducacion">
-                    <option [ngValue]="null">Elige marca</option>
-                    <option *ngFor="let tip of tipoEdu" [ngValue]="tip">
-                      {{ tip.nombreTipoEducacion}}
-                    </option>
-                  </select>
+                <mat-form-field class="input" appearance="legacy">
+                  <mat-label>Nombre</mat-label>
+                  <input matInput 
+                  placeholder="Ingrese Nombre de la Institucion"
+                  
+                  formControlName="nombreEducacion">                        
+                </mat-form-field>
+
+                <mat-form-field class="date" appearance="legacy">
+                  <mat-label>Enter a date range</mat-label>
+                  <mat-date-range-input formControlName="fechaInicio" [rangePicker]="picker1">
+                    <input matStartDate formControlName="fechaInicio" placeholder="Start date">
+                    <input matEndDate formControlName="fechaFin" placeholder="End date">
+                  </mat-date-range-input>
+                  <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                  <mat-date-range-picker #picker1></mat-date-range-picker>
+                </mat-form-field>
+
+                <mat-form-field clase="input" appearance="legacy">
+                  <mat-label>Elegi tipo educacion</mat-label>
+                  <mat-select 
+                  formControlName="tipoEducacion">
+                    <mat-option *ngFor="let tip of tipoEdu" [value]="tip" >{{  tip.nombreTipoEducacion}}</mat-option>
+                    
+                  </mat-select>
+                </mat-form-field>
              
-                </div>
-                
                 <div class="modal-footer">
                   <button
                     type="button"
-                    class="btn btn-secondary"
+                    class="btn "
                     data-bs-dismiss="modal"
                   >
                     Close
@@ -391,7 +278,7 @@
                   <button
                     [disabled]="this.form.invalid"
                     type="submit"
-                    class="btn btn-primary"
+                    class="btn "
                     data-bs-dismiss="modal"
                     (ngSubmit)="guardarEducacion()"
                   >
@@ -403,6 +290,7 @@
           </div>
         </div>
       </div>
+    </div>
     </section>
-  </section>
-</section>
+ 
+

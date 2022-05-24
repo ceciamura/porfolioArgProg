@@ -11,6 +11,8 @@ gap: 1rem;
 .botonesHard{
   display:flex;
   justify-content: flex-end;
+  position: relative;
+  top: 3em;
 }
 
 .habilidades-container img{
@@ -105,3 +107,40 @@ ol.gradient-list {
   .icono-rojo{
       color: red;
   }
+
+  .porcentaje{
+    position: relative;
+ 
+    top:2.5rem;
+    left:1rem;
+    font-size: 1.3em;
+    color: gray;
+    font-weight: bold;
+  }
+
+
+  .input, .date{
+    width:80%;
+    margin-bottom: 1rem;
+    border:none !important;
+    box-shadow: none !important;
+    
+   
+    
+}
+.date{
+    margin-left:1.1rem;
+}
+
+::ng-deep .cdk-overlay-container {
+    z-index: 1200 !important;
+  }
+
+input, .input:hover{
+   
+    border: none !important;
+    
+}
+.titulo{
+  margin-top:-1.5rem;
+}

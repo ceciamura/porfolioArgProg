@@ -10,7 +10,7 @@
   </button>
   <div class="container">
     <div class="row">
-      <div *ngFor="let proyecto of misProyectos" class="col-4 card">
+      <div *ngFor="let proyecto of misProyectos" class="col-12 col-lg-4 card">
         <div *ngIf="ulogged != ''">
           <button
             type="button"
@@ -73,7 +73,7 @@
   </div>
 
   <!-------------------------MODAL PROYECTO--------------------------------------------------------->
-
+  <div class="modal-box">
   <div
     class="modal fade"
     id="exampleModal4"
@@ -94,97 +94,51 @@
         <div class="modal-body">
           <form [formGroup]="formProyecto" (ngSubmit)="guardarProyecto()">
             <h5 class="titulo"> {{ accion | uppercase }} PROYECTO</h5>
-            <div class="input-group flex-nowrap">
-              <span class="input-group-text" id="addon-wrapping">
-                <i
-                  [class.icono-verde]="this.formProyecto.get('nombre')?.valid"
-                  [class.icono-rojo]="
-                    this.formProyecto.get('nombre')?.invalid &&
-                    this.formProyecto.get('nombre')?.touched
-                  "
-                  class="fa-solid fa-book"
-                ></i>
-              </span>
-              <input
-                formControlName="nombre"
-                type="text"
-                class="form-control"
-                placeholder="Nombre Proyecto"
-                aria-label="nombre"
-                aria-describedby="addon-wrapping"
-              />
-            </div>
-            <div class="input-group flex-nowrap">
-              <span class="input-group-text" id="addon-wrapping">
-                <i
-                  [class.icono-verde]="this.formProyecto.get('github')?.valid"
-                  [class.icono-rojo]="
-                    this.formProyecto.get('github')?.invalid &&
-                    this.formProyecto.get('github')?.touched
-                  "
-                  class="fa-solid fa-book"
-                ></i>
-              </span>
-              <input
-                formControlName="github"
-                type="text"
-                class="form-control"
-                placeholder="Github url"
-                aria-label="github"
-                aria-describedby="addon-wrapping"
-              />
-            </div>
-            <div class="input-group flex-nowrap">
-              <span class="input-group-text" id="addon-wrapping">
-                <i
-                  [class.icono-verde]="this.formProyecto.get('portada')?.valid"
-                  [class.icono-rojo]="
-                    this.formProyecto.get('portada')?.invalid &&
-                    this.formProyecto.get('portada')?.touched
-                  "
-                  class="fa-solid fa-book"
-                ></i>
-              </span>
-              <input
-                formControlName="portada"
-                type="url"
-                class="form-control"
-                placeholder="Portada url"
-                aria-label="github"
-                aria-describedby="addon-wrapping"
-              />
-            </div>
-            <div class="input-group flex-nowrap">
-              <span class="input-group-text" id="addon-wrapping">
-                <i
-                  [class.icono-verde]="this.formProyecto.get('anio')?.valid"
-                  [class.icono-rojo]="
-                    this.formProyecto.get('anio')?.invalid &&
-                    this.formProyecto.get('anio')?.touched
-                  "
-                  class="fa-solid fa-calendar-days"
-                ></i>
-              </span>
-              <input
-                formControlName="anio"
-                maxlength="10"
-                type="date"
-                class="form-control"
-                placeholder="YYYY/MM/DD"
-                aria-label="inicio"
-                aria-describedby="addon-wrapping"
-              />
-            </div>
-            <!--  <div> -->
+            
+            <mat-form-field class="input" appearance="legacy">
+              <mat-label>Nombre</mat-label>
+              <input matInput 
+              placeholder="Ingrese Nombre de proyecto"
+              
+              formControlName="nombre">                        
+            </mat-form-field>
+
+            <mat-form-field class="input" appearance="legacy">
+              <mat-label>GitHub URL</mat-label>
+              <input matInput 
+              placeholder="Ingrese direccion de GitHub"
+              
+              formControlName="github">                        
+            </mat-form-field>
+            
+
+            <mat-form-field class="input" appearance="legacy">
+              <mat-label>Foto</mat-label>
+              <input matInput 
+              placeholder="Ingrese URL de la imagen"
+              
+              formControlName="portada">                        
+            </mat-form-field>
+            
+
+            <mat-form-field  class="date"appearance="legacy">
+              <mat-label>Choose a date</mat-label>
+              <input matInput [matDatepicker]="picker2"
+              formControlName="anio">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+          
 
             <mat-expansion-panel
             
             >
-              <mat-expansion-panel-header>
+              <mat-expansion-panel-header >
                 <mat-panel-title> Elije la tecnologia usada </mat-panel-title>
                 <mat-panel-description> </mat-panel-description>
               </mat-expansion-panel-header>
-              <mat-selection-list
+              <mat-selection-list 
                 #tecnoList
                 formControlName="selectedTecnologias"
                 (ngModelChange)="onGroupsChange($event)"
@@ -224,7 +178,7 @@
             <div class="modal-footer">
               <button
                 type="button"
-                class="btn btn-secondary"
+                class="btn"
                 data-bs-dismiss="modal"
               >
                 Close
@@ -232,7 +186,7 @@
               <button
                 [disabled]="this.formProyecto.invalid"
                 type="submit"
-                class="btn btn-primary"
+                class="btn "
                 data-bs-dismiss="modal"
                 (ngSubmit)="guardarProyecto()"
               >
@@ -243,5 +197,6 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
 </section>
