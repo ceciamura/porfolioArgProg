@@ -1,18 +1,16 @@
 <section class="proyectos">
-  <h2 class="titulo-secciones">Proyectos</h2>
-  <button
-    type="button"
-    class="botonEducacion"
-    data-bs-toggle="modal"
-    data-bs-target="#exampleModal4"
-  >
-    <a *ngIf="ulogged != ''"> <i class="fa-solid fa-plus"></i></a>
-  </button>
+  <h2 id="Proyectos"class="titulo-secciones">Proyectos</h2>
+  <button type="button" id="botonAgregar"    
+  color="accent"
+  data-bs-toggle="modal"
+  data-bs-target="#exampleModal4" *ngIf="ulogged != ''" mat-raised-button >
+  Agregar Proyecto</button>
+  
   <div class="container">
     <div class="row">
       <div *ngFor="let proyecto of misProyectos" class="col-12 col-lg-4 card">
         <div *ngIf="ulogged != ''">
-          <button
+          <button id="botonAgregar"
             type="button"
             class="botones-proyecto"
             data-bs-toggle="modal"
@@ -92,7 +90,7 @@
           ></button>
         </div>
         <div class="modal-body">
-          <form [formGroup]="formProyecto" (ngSubmit)="guardarProyecto()">
+          <form class="containers" [formGroup]="formProyecto" (ngSubmit)="guardarProyecto()">
             <h5 class="titulo"> {{ accion | uppercase }} PROYECTO</h5>
             
             <mat-form-field class="input" appearance="legacy">

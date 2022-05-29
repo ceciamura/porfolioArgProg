@@ -4,12 +4,31 @@ import { LoginService } from 'src/app/servicios/login.service';
 import { PersonaService } from 'src/app/servicios/persona.service';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient, HttpClientModule, HttpContext } from '@angular/common/http';
+import { trigger, style, transition, animate, state } from '@angular/animations';
+
+
+
+
 
 
 @Component({
   selector: 'app-habilidades',
   templateUrl: './habilidades.component.html',
-  styleUrls: ['./habilidades.component.css']
+  styleUrls: ['./habilidades.component.css'],
+  animations:[
+    trigger('enterState', [
+      state('void', style({
+        transform: 'translateX(-100%)',
+        opacity: 0
+      })),
+      transition(':enter', [
+        animate(3000, style({
+          transform: 'translateX(0)',
+          opacity:1
+        }))
+      ])
+    ])
+  ]
 })
 export class HabilidadesComponent implements OnInit {
 
@@ -50,6 +69,10 @@ export class HabilidadesComponent implements OnInit {
    this.verSoftSkills()
    this.verPersonas()
    this.verHardSkills()
+  
+ 
+   
+
 
   
        
@@ -185,6 +208,17 @@ eliminarHardSkills(id: number) {
     colorInterno:hardSkills.colorInterno
   })
 }
-
+/****************animation on scroll************************* */
+/* const checkpoint:any = 300;
+ 
+window.addEventListener("scroll", () => {
+  const currentScroll = window.pageYOffset;
+  if (currentScroll <= checkpoint) {
+    this.opacity = 1 - currentScroll / checkpoint;
+  } else {
+    this.opacity = 0;
+  }
+  document.querySelector<any>(".textoHardSkill").style.opacity = opacity;
+}); */
 
 }

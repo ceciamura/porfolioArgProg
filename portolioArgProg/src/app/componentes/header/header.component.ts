@@ -7,6 +7,7 @@ import { ToastrService} from 'ngx-toastr';
 import { RouterModule, Router} from '@angular/router';
 
 
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -17,6 +18,7 @@ export class HeaderComponent implements OnInit {
  misDatos:any;
  ulogged:string="";
  rutaapi="/api/persona";
+ reloadOnSearch=false;
 
   constructor(private routes:Router,private loginService:LoginService, private http:HttpClient, private formBuilder:FormBuilder,
     private toastr:ToastrService
@@ -50,6 +52,9 @@ this.ulogged= this.loginService.getUserLogged();
     window.location.reload();
 
   }
+ 
+
+  
 }
 
 

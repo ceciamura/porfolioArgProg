@@ -2,5 +2,39 @@ button{
     color:rgb(255,71,111);
     font-size:1.5em;
 }
+ .container{
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     height: 100%;
 
+ }
+.loginPng{
+    width: 100%;
+    max-width: 150px;
+    text-align: center;
+}
+
+.input {
+    width:80%;
+    margin-bottom: 2rem;
+    border:none !important;
+    box-shadow: none !important;
+    
+   
+    
+}
+input, .input:hover, .form-control:focus{
+   
+    border: none !important;
+    
+
+}
+
+
+.form-control:focus{
+    border:none !important;
+    box-shadow: none !important;
+}
 

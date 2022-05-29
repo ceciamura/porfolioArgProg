@@ -1,0 +1,130 @@
+.hero-image {
+    
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/assets/portada2.jpg");
+    height:75vh;   
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+
+  .presentacion{
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-end;
+      height: 500px;
+      
+    
+  }
+
+  /****************HEADER************************************************************/
+.redes{
+    /* display: flex;
+    justify-content: space-between; */
+    padding: 1rem;
+}
+.redes i{
+    margin-left: 2rem;
+    font-size: 3em;
+    /* color:  rgb(255,71,111); */
+}
+.editar, .btn{
+    
+    color:rgb(255,71,111);
+    line-height: 1;
+    font-size:1.5em;
+    border-radius: 10px;
+    margin: 0 1rem;
+    padding:0.5rem;
+    border:transparent;
+    box-shadow: 0px 1px 0px #11111a1a;    
+    background-color: transparent;     
+}
+
+
+.botones{
+    display:flex;
+    justify-content: end;
+    
+}
+.editar i{
+    font-size:0.7em; 
+    margin: 0 ;
+    
+}
+
+/* .modal-title{
+    color:rgb(255,71,111);
+}
+ */
+.logo{
+   height: 13vh;
+}
+.logo img{
+    
+    width: 15rem;
+}
+.logoTxt{
+    color: rgb(255,71,111);
+    font-size: 1.5em;
+    font-family:'Anek Odia', sans-serif;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+a>.fa-facebook{
+    color: rgb(14,142,241);
+    font-size: 3rem;    
+}
+
+a>.fa-instagram {
+    font-size: 3rem;
+    color: transparent;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+a>.fa-linkedin{
+    font-size: 3rem;
+    color:rgb(2,117,183)
+}
+
+a>.fa-github{
+    font-size: 3rem;
+    color:#000;
+}
+
+.iconos{
+    display: flex;
+    width: 35%;
+    justify-content: space-evenly;  
+    align-items: center;
+    
+    
+}
+
+/******************************************NAV BAR**************************************************************************/
+.navBar{
+    display: grid;
+grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+grid-auto-rows: 3rem;
+justify-items: center;
+align-items: center;
+margin-top: 1rem;
+gap: 1rem;
+
+}
+ .navBar a{
+     color: white;
+     text-decoration: none;
+     font-size: 1.5rem;
+     
+ }
+ .foto{
+    border-radius: 50%;
+    max-width: 20%;
+    align-self: center;
+    padding:3px;
+    border: 7px solid rgb(255,71,111);
+    margin-left: 3rem;}

@@ -8,8 +8,15 @@
 .botonEducacion{
     border-style: none;
     background-color: transparent;
+    color: black;
     
 }
+#agregarExpe{
+    color: black;
+    position: absolute;   
+    font-size: 1.5rem;  
+}
+
 .input, .date{
     width:80%;
     margin-bottom: 1rem;
@@ -32,5 +39,8 @@ input, .input:hover{
     border: none !important;
     
 
+}
+.titulo{
+    margin-bottom: 1.5rem;
 }
 

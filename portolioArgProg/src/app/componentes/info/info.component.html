@@ -3,17 +3,13 @@
   <div class="row">
   <section class="col-sm-12 col-lg-5">
     
-    <h2 class="titulo-secciones">Experiencia laboral</h2>
-
-    <button
-      type="button"
-      class="botonEducacion"
-      data-bs-toggle="modal"
-      data-bs-target="#exampleModal3"
-    >
-      <a *ngIf="ulogged != ''"> <i class="fa-solid fa-plus"></i></a>
-    </button>
-
+    <h2 id="ExperienciaLaboral" class="titulo-secciones">Experiencia laboral</h2>
+  <button  type="button"  id="botonAgregar"  
+  color="accent"
+  data-bs-toggle="modal"
+  data-bs-target="#exampleModal3" *ngIf="ulogged != ''" mat-raised-button >
+  Agregar Experiencia Laboral</button>
+  
     <div class="listaExperiencia">
       <div class="row d-flex flex-wrap">
         <div
@@ -62,15 +58,15 @@
 
    <!------------------------------EDUCACION---------------------------------------------->
    <section class="col-sm-12 col-lg-7  educacion">
-    <h2 class="titulo-secciones">Educacion</h2>
-    <button
-      type="button"
-      class="botonEducacion"
-      data-bs-toggle="modal"
-      data-bs-target="#exampleModal2"
-    >
-      <a *ngIf="ulogged != ''"> <i class="fa-solid fa-plus"></i></a>
-    </button>
+    <h2 id="Educacion" class="titulo-secciones">Educacion</h2>
+   
+    <button  type="button" id="botonAgregar"
+    color="accent"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal2" *ngIf="ulogged != ''" mat-raised-button >
+    Agregar Educacion</button>
+      <!-- <a id="botonAgregar" *ngIf="ulogged != ''"> <i class="fa-solid fa-plus"></i>Agregar Educacion</a> -->
+    
 
     <div id="tablaEducacion">
       <table class="table table-hover">
@@ -137,7 +133,7 @@
           ></button>
         </div>
         <div class="modal-body">
-         <form [formGroup]="formExperiencia" (ngSubmit)="guardarExperiencia()"> 
+         <form class="containers" [formGroup]="formExperiencia" (ngSubmit)="guardarExperiencia()"> 
             <h5 class="titulo">{{ accion | uppercase }} EXPERIENCIA</h5>   
               
              
@@ -233,6 +229,7 @@
             </div>
             <div class="modal-body">
               <form
+              class="containers"
                 id="formEdu"
                 [formGroup]="form"
                 (ngSubmit)="guardarEducacion()"
